@@ -1,17 +1,15 @@
 <script setup>
-
 defineProps({
-    border: {
-        type: Boolean,
-        default: true
-    },
-    ps: Boolean
-})
-
+  border: {
+    type: Boolean,
+    default: true,
+  },
+  first: Boolean,
+});
 </script>
 
 <template>
-    <th scope="col" :class="[border?'border-r border-black':'', ps?'px-4':'px-6', 'py-2 text-xs font-medium tracking-wider text-left text-tertiary-400 dark:text-gray-400']">
-        <slot />
-    </th>
+  <th :class="[first ? 'pl-5.5' : 'pl-4', 'py-2 pr-4 whitespace-nowrap']">
+    <slot />
+  </th>
 </template>

@@ -1,16 +1,14 @@
 <script setup>
-
 defineProps({
-    border: {
-        type: Boolean,
-        default: true
-    }
-})
-
+  border: {
+    type: Boolean,
+    default: true,
+  },
+});
 </script>
 
 <template>
-    <thead class="border-b border-black">
-        <slot />
-    </thead>
+  <thead class="text-tertiary-400 text-xs font-mont-light">
+    <slot />
+  </thead>
 </template>

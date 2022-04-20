@@ -1,5 +1,5 @@
 <template>
-    <tbody class="text-white">
-        <slot />
-    </tbody>
+  <tbody class="divide-y divide-black">
+    <slot />
+  </tbody>
 </template>
