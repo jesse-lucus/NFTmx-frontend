@@ -34,7 +34,7 @@ watch(windowWidth, val => {
         </div>
         <div v-if="extend" class="bg-tertiary-900 text-center pt-12">
             <div class="max-w-screen-3xl mx-auto pb-24.25">
-                <div class="text-white font-press px-4 pt-9.75 pb-2 sm:pb-6 lg:pb-12.5">
+                <div class="text-white font-press px-4 pt-8 pb-2 sm:pb-6 lg:pb-11">
                     <div class="text-xl sm:text-2xl lg:text-3xl">For developers and marketers</div>
                 </div>
                 <div

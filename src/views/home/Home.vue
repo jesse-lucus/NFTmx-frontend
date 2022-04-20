@@ -8,8 +8,9 @@ import NftmxFooter from '@/core/container/NftmxFooter.vue';
 import NftmxSelect from '@/core/components/basic/NftmxSelect.vue';
 import TrendingAssets from './TrendingAssets.vue';
 import TrendingSearch from './TrendingSearch.vue';
-import SyndicationCarousel from '../landing/components/SyndicationCarousel.vue';
+import SyndicationCarousel from "@/core/components/carousel/SyndicationCarousel.vue";
 import Analyzer from './Analyzer.vue';
+import BackerCarousel from "@/core/components/carousel/BackerCarousel.vue";
 
 const store = useStore();
 
@@ -33,7 +34,9 @@ const store = useStore();
         <div class="pt-6 sm:pt-4.25">
             <syndication-carousel></syndication-carousel>
         </div>
-        <nftmx-divider class="mt-9"></nftmx-divider>
+        <div class="bg-tertiary-800 border border-black py-6">
+            <backer-carousel />
+        </div>
         <analyzer />
         <trending-search />
         <trending-assets />
