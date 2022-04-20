@@ -5,15 +5,15 @@
         <div
           class="transition duration-300 m-4 cursor-default hover:shadow-[0_0px_12px_0px_rgb(0_0_0_/_0.1),_0_0px_0px_0px_rgb(0_0_0_/_0.1);] hover:shadow-primary-900 w-max"
         >
-          <div class="w-70.75 md:w-141.5 h-72 md:h-48.75 2xl:w-165 bg-tertiary-900 relative">
+          <div class="w-70.75 sm:w-141.5 h-72 sm:h-48.75 2xl:w-165 bg-tertiary-900 relative">
             <div class="text-tertiary-400 text-10 text-right">
               <font-awesome-icon
                 :icon="['fas', 'external-link-alt']"
                 class="mr-2 mt-2"
               />
             </div>
-            <div class="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-black px-6 py-2.5">
-              <div class="flex items-center gap-4 pb-4 md:pb-0">
+            <div class="grid sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-black px-6 py-2.5">
+              <div class="flex items-center gap-4 pb-4 sm:pb-0">
                 <div
                   class="w-18.5 h-18.5"
                   :style="{
@@ -33,7 +33,7 @@
                   </div>
                 </div>
               </div>
-              <div class="pt-4 md:pt-0 md:px-4 grid grid-cols-2">
+              <div class="pt-4 sm:pt-0 sm:px-4 grid grid-cols-2">
                 <div class="font-ibm-medium text-left text-xs">
                   <div class="font-ibm-bold text-white">Total TVL</div>
                   <div class="text-primary-900">$141565445656</div>
@@ -53,7 +53,7 @@
               </div>
             </div>
             <button
-              class="transition bg-black hover:bg-tertiary-300 text-secondary-900 font-press w-full flex items-center justify-center h-15 bottom-0 absolute"
+              class="transition bg-black hover:bg-tertiary-300 text-secondary-900 font-press w-full flex items-center justify-center h-15 bottom-0 absolute text-sm"
             >
               BECOME A BACKER
             </button>
@@ -61,10 +61,6 @@
         </div>
       </div>
     </slide>
-
-    <template #addons>
-      <pagination />
-    </template>
   </carousel>
 </template>
 
@@ -122,22 +118,3 @@ function handleResize() {
 handleResize();
 window.addEventListener("resize", handleResize);
 </script>
-
-<style scoped>
-/deep/ .carousel__slide--prev {
-  display: none;
-}
-/deep/ .carousel__pagination-button {
-  width: var(--vc-pgn-width);
-  height: var(--vc-pgn-width);
-  border-radius: 0;
-  background-color: #535353;
-  width: 11px;
-  height: 11px;
-}
-/deep/ .carousel__pagination-button--active {
-  background-color: #94c408;
-  width: 11px;
-  height: 11px;
-}
-</style>

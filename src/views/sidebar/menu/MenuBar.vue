@@ -5,10 +5,11 @@ import MenuFooter from './MenuFooter.vue';
 import SidebarContainer from '@/core/container/SidebarContainer.vue';
 import { useStore } from 'vuex';
 import { computed } from 'vue';
-import NftmxWalletAddressPop from '@/core/components/blockchain-address/NftmxWalletAddressPop.vue';
 import ListGroupItem from '@/core/components/basic/ListGroupItem.vue';
 import ListGroupSubItem from '@/core/components/basic/ListGroupSubItem.vue';
+import NftmxWalletAddress from '@/core/components/blockchain-address/NftmxWalletAddress.vue';
 
+const emit = defineEmits(['open-modal']);
 const store = useStore();
 const walletAddress = computed(() => store.getters['auth/walletAddress']);
 
@@ -16,16 +17,20 @@ const toggleSidebar = () => {
     store.commit('app/TOGGLE_MENU', !store.state.app.menuOpened);
     store.commit('app/TOGGLE_NOTIFICATION_BAR', false);
 }
+const openAccountModal = () => {
+    emit('open-modal');
+}
 </script>
 
 <template>
     <sidebar-container>
         <div class="mt-5 mb-7 flex items-center cursor-pointer justify-between" @click="toggleSidebar">
             <div>
-                <nftmx-wallet-address-pop
+                <nftmx-wallet-address
                     v-if="walletAddress"
-                    class="pt-1 hover:text-primary-400 transition"
+                    class="pt-1 text-base hover:text-primary-900 transition"
                     :address="walletAddress"
+                    @click="openAccountModal"
                 />
             </div>
             <div class="ml-6 flex flex-col gap-1 items-center">

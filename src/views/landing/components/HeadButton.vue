@@ -31,7 +31,7 @@ const componentClass = computed(() => {
     "h-12.5 sm:h-15",
     "leading-4",
     "border-4",
-    "font-mont-bold",
+    "font-press",
     "hover:text-white",
     "shadow-[0_0px_12px_0px_rgb(0_0_0_/_0.1),_0_0px_0px_0px_rgb(0_0_0_/_0.1);]",
     colors[props.color],

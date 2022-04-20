@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from 'vue';
 import Accordion from '@/core/components/accordion/BasicAccordion.vue';
-import NftmxSaleCard from '@/core/components/cards/NftmxSaleCard.vue';
 
 defineProps({
     title: String,
@@ -18,7 +17,7 @@ defineProps({
     >
         <template v-slot:caption>
             <div class="flex items-center w-full">
-                <div class="flex-1 text-sm font-press pt-3 pb-5 mr-4">{{ title }}</div>
+                <div class="flex-1 text-sm font-ibm-bold pt-3 pb-5 mr-4">{{ title }}</div>
             </div>
         </template>
         <div class="pt-2">

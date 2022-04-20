@@ -5,30 +5,26 @@ import AccordionContainer from "./container/AccordionContainer.vue";
 import { openseaTrendingCollections } from "@/core/config";
 import openseaService from "@/core/services/opensea.service";
 import SectionButton from "@/core/components/buttons/SectionButton.vue";
-import FilterAssets from "./FilterAssets.vue";
+import CollectionCard from "@/core/components/cards/CollectionCard.vue";
+import marketService from "@/core/services/market.service";
 
-defineProps({
-  contract: String,
-});
-
-const allCollections = ref([
-  "Most Activity",
-  "Most View",
-  "Most Liked",
-  "Most New",
-  "Biggest Sales",
-]);
+const allCollections = ref([]);
 const collections = ref([]);
 const retrieveOffset = ref(0);
 const retrieveLimit = ref(100);
 const displayOffset = ref(0);
-const displayLimit = ref(3);
+const displayLimit = ref(12);
 const more = computed(
   () => allCollections.value.length > collections.value.length
 );
+const loading = ref(true);
 
 const retrieveCollections = () => {
-  loadMoreCollection();
+  marketService.getEthContracts().then((res) => {
+    loading.value = false;
+    allCollections.value = res.data;
+    loadMoreCollection();
+  });
 };
 
 onMounted(() => {
@@ -46,15 +42,33 @@ const loadMoreCollection = () => {
 </script>
 
 <template>
-  <div class="flex-1 sm:pl-5 pb-3.25" v-if="contract">
-    <filter-assets title="Explore" :contract="contract" />
-  </div>
-  <div class="flex-1 sm:pl-5 pb-3.25" v-if="!contract">
-    <filter-assets
-      v-for="(collection, index) in collections"
-      :key="index"
-      :title="collection"
-    />
+  <div class="flex-1 sm:pl-5 pb-3.25">
+    <div class="mb-10.25">
+      <div class="font-press text-lg text-white my-2.75">
+        Explore Collections
+      </div>
+      <div
+        class="grid gap-5 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 pt-2.25"
+      >
+        <collection-card
+          v-for="(collection, index) in collections"
+          :key="index"
+          :collection="collection"
+        />
+      </div>
+    </div>
+    <div
+      v-if="loading"
+      class="h-96 flex justify-center items-center font-ibm-bold text-tertiary-500 text-lg"
+    >
+      Loading...
+    </div>
+    <div
+      v-if="!loading && collections.length === 0"
+      class="h-96 flex justify-center items-center font-ibm-bold text-tertiary-500 text-lg"
+    >
+      No Collections found
+    </div>
     <div class="text-center">
       <section-button
         v-if="more"

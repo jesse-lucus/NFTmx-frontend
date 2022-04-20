@@ -14,12 +14,10 @@ import AssetInfo from '@/core/components/asset/AssetInfo.vue';
 
 const store = useStore();
 const route = useRoute();
-const router = useRouter();
-const tokenAddress = route.params.tokenAddress;
-const tokenId = route.params.tokenId;
+const id = route.params.id;
 const asset = ref({});
 
-marketService.getAsset(tokenAddress, tokenId).then(res => {
+marketService.getAsset(id).then(res => {
     asset.value = res.data;
 });
 </script>
