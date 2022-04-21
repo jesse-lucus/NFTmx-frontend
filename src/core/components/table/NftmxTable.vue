@@ -15,7 +15,7 @@ defineProps({
           class="overflow-hidden overflow-x-auto overflow-y-auto"
           :style="{ height: height }"
         >
-          <table class="w-full divide-y divide-black font-mont text-white">
+          <table class="w-full divide-y divide-black font-ibm text-white">
             <slot />
           </table>
         </div>

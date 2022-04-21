@@ -152,7 +152,7 @@ onMounted(() => {
     </div>
     <nftmx-divider />
     <div class="relative">
-      <div class="absolute top-9 flex gap-6 font-ibm-bold text-sm">
+      <div class="absolute top-9 flex gap-6 font-ibm-medium text-sm">
         <div
           @click="tab = 'ITEMS'"
           :class="[

@@ -37,39 +37,41 @@ const timer = setInterval(() => {
 
 <template>
   <div
-    class="flex gap-x-0.5 max-w-fit items-center text-white"
-    :class="{ 'text-lg 2xl:text-2xl': size === 'big' }"
+    :class="[
+      size === 'big' ? 'font-ibm-bold text-2xl' : 'font-ibm text-sm',
+      'flex gap-x-0.5 max-w-fit items-center text-white',
+    ]"
     style="width: -webkit-fill-available"
   >
-    <number-block :color="color" :size="size" class="font-ibm text-sm">{{
+    <number-block :color="color" :size="size">{{
       day1 ? day1 : 0
     }}</number-block>
-    <number-block :color="color" :size="size" class="font-ibm text-sm">{{
+    <number-block :color="color" :size="size">{{
       day2 ? day2 : 0
     }}</number-block>
-    <span class="-mx-px font-ibm text-base">:</span>
-    <number-block :color="color" :size="size" class="font-ibm text-sm">{{
+    <span class="-mx-px">:</span>
+    <number-block :color="color" :size="size">{{
       hour1 ? hour1 : 0
     }}</number-block>
-    <number-block :color="color" :size="size" class="font-ibm text-sm">{{
+    <number-block :color="color" :size="size">{{
       hour2 ? hour2 : 0
     }}</number-block>
-    <span class="-mx-px font-ibm text-base">:</span>
-    <number-block :color="color" :size="size" class="font-ibm text-sm">{{
+    <span class="-mx-px">:</span>
+    <number-block :color="color" :size="size">{{
       min1 ? min1 : 0
     }}</number-block>
-    <number-block :color="color" :size="size" class="font-ibm text-sm">{{
+    <number-block :color="color" :size="size">{{
       min2 ? min2 : 0
     }}</number-block>
-    <span class="-mx-px font-ibm text-base">:</span>
-    <number-block :color="color" :size="size" class="font-ibm text-sm">{{
+    <span class="-mx-px">:</span>
+    <number-block :color="color" :size="size">{{
       sec1 ? sec1 : 0
     }}</number-block>
-    <number-block :color="color" :size="size" class="font-ibm text-sm">{{
+    <number-block :color="color" :size="size">{{
       sec2 ? sec2 : 0
     }}</number-block>
-    <span class="-mx-px font-ibm text-base">:</span>
-    <number-block :color="color" :size="size" class="font-ibm text-sm">
+    <span class="-mx-px">:</span>
+    <number-block :color="color" :size="size">
       <span class="numbers__window">
         <span
           :class="[time > 0 ? 'number-milli-1' : '', 'number-milli']"
@@ -78,7 +80,7 @@ const timer = setInterval(() => {
         >
       </span>
     </number-block>
-    <number-block :color="color" :size="size" class="font-ibm text-sm">
+    <number-block :color="color" :size="size">
       <span class="numbers__window">
         <span
           :class="[time > 0 ? 'number-milli-2' : '', 'number-milli']"

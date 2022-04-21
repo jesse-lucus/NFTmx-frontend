@@ -104,7 +104,7 @@ watchEffect(() => {
           :icon="['fas', 'search']"
           class="text-white text-base pointer-events-none absolute top-4 left-5"
         />
-        <div class="bg-black w-68.25">
+        <div class="bg-tertiary-800 w-68.25">
           <nftmx-input class="h-12.5 pl-12" />
         </div>
       </div>

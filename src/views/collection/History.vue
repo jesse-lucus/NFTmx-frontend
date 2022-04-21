@@ -20,7 +20,7 @@ import NftmxWalletAddressPop from '@/core/components/blockchain-address/NftmxWal
                     :icon="['fas', 'search']"
                     class="text-white text-base pointer-events-none absolute top-4 left-5"
                 />
-                <div class="bg-black w-68.25">
+                <div class="bg-tertiary-800 w-68.25">
                     <nftmx-input class="h-12.5 pl-12" />
                 </div>
             </div>
@@ -84,7 +84,7 @@ import NftmxWalletAddressPop from '@/core/components/blockchain-address/NftmxWal
                                         <div class="flex gap-4.5 items-center">
                                             <div
                                                 class="w-11 h-11"
-                                                :style="{ background: 'url(' + '/images/nfts/img2.jpg' + ')', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }"
+                                                :style="{ background: 'url(' + '/images/nfts/img2.png' + ')', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }"
                                             />
                                             <div>World #1</div>
                                         </div>

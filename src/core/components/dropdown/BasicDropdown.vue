@@ -17,7 +17,7 @@ const handleClick = () => {
 
 <template>
     <div
-        class="border border-black pr-3 bg-black"
+        class="border border-black pr-3 bg-tertiary-800"
         v-click-outside="onClickOutside"
     >
         <accordion
@@ -29,7 +29,7 @@ const handleClick = () => {
         >
             <template v-slot:caption>
                 <div class="flex items-center">
-                    <div class="flex-1 text-sm font-ibm-semi-bold pt-3.25 pb-3.75 px-3.5">{{ title }}</div>
+                    <div class="flex-1 text-sm font-ibm pt-3.25 pb-3.75 px-3.5">{{ title }}</div>
                 </div>
             </template>
             <div class="grid gap-2.5 justify-between text-xs pb-4">
