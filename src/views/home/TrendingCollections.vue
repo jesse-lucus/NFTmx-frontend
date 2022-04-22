@@ -12,6 +12,8 @@ defineProps({
   ledgerPanelVisible: Boolean,
 });
 
+const emit = defineEmits(["set-collections"]);
+
 const allCollections = ref([]);
 const collections = ref([]);
 const retrieveOffset = ref(0);
@@ -27,6 +29,7 @@ const retrieveCollections = () => {
   marketService.getEthContracts().then((res) => {
     loading.value = false;
     allCollections.value = res.data;
+    emit("set-collections", res.data);
     loadMoreCollection();
   });
 };

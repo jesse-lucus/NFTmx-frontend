@@ -16,6 +16,7 @@ import marketService from "@/core/services/market.service";
 const props = defineProps({
   filterBy: String,
   filterActive: Boolean,
+  collections: Array,
 });
 const emit = defineEmits([
   "click-filter",
@@ -38,9 +39,10 @@ const filterCollection = (address) => {
 };
 
 watchEffect(() => {
-  marketService.filterEthContractByName(collectionName.value).then((res) => {
-    filteredCollections.value = res.data;
-  });
+  filteredCollections.value = props.collections.filter(
+    (collection) =>
+      collection.name && collection.name.indexOf(collectionName.value) > -1
+  );
 });
 </script>
 
@@ -56,7 +58,7 @@ watchEffect(() => {
           'transition hover:text-primary-900 border-b-3 hover:border-primary-900 py-5.75 cursor-pointer',
         ]"
       >
-        24 Collections
+        {{ collections.length }} Collections
       </div>
       <div
         @click="clickFilterBy('lands')"

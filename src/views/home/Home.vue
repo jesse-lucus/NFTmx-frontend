@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useStore } from "vuex";
 import BodyContainer from "@/core/container/BodyContainer.vue";
 import NftmxDivider from "@/core/components/basic/NftmxDivider.vue";
@@ -19,6 +19,7 @@ const filterActive = ref(false);
 const contract = ref("");
 const ledgerPanelVisible = ref(true);
 const carouselPlay = ref(false);
+const collections = ref([]);
 
 const clickFilter = () => {
   filterActive.value = !filterActive.value;
@@ -31,6 +32,9 @@ const filterContract = (address) => {
 };
 const toggleLedgerPanel = () => {
   ledgerPanelVisible.value = !ledgerPanelVisible.value;
+};
+const setCollections = (value) => {
+  collections.value = value;
 };
 </script>
 
@@ -78,6 +82,7 @@ const toggleLedgerPanel = () => {
       @click-filter="clickFilter"
       @click-filter-by="clickFilterBy"
       @filter-contract="filterContract"
+      :collections="collections"
     />
     <div class="sm:flex justify-center px-4 sm:px-10 py-6.5 lg:px-22">
       <ledger
@@ -88,6 +93,7 @@ const toggleLedgerPanel = () => {
       <trending-collections
         :ledgerPanelVisible="ledgerPanelVisible"
         v-if="filterBy === 'collection'"
+        @set-collections="setCollections"
       />
       <trending-assets
         :ledgerPanelVisible="ledgerPanelVisible"
