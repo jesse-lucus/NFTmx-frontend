@@ -5,7 +5,7 @@ import { queryBuilder } from "../utils";
 
 class MatketService {
   getOrder(id) {
-    return http.get(`orders/${id}`);
+    return http.get(`orders?id=${id}`);
   }
   getSaleOrders(walletAddress) {
     return http.get(`orders/sale?walletAddress=${walletAddress}`);

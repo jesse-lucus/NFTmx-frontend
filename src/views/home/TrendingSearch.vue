@@ -178,6 +178,8 @@ watchEffect(() => {
                           class="w-6 h-6"
                           :style="{
                             background: 'url(' + collection.imageUrl + ')',
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
                           }"
                         />
                         <div>
