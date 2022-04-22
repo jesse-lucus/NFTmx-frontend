@@ -41,6 +41,10 @@ import {
   faUser,
   faPlay,
   faPause,
+  faArrowLeft,
+  faArrowRight,
+  faArrowDown,
+  faArrowUp,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faFacebookF,
@@ -85,7 +89,11 @@ library.add(
   faBell,
   faUser,
   faPlay,
-  faPause
+  faPause,
+  faArrowLeft,
+  faArrowRight,
+  faArrowDown,
+  faArrowUp
 );
 
 const options = {

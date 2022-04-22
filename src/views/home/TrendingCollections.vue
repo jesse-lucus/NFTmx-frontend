@@ -8,6 +8,10 @@ import SectionButton from "@/core/components/buttons/SectionButton.vue";
 import CollectionCard from "@/core/components/cards/CollectionCard.vue";
 import marketService from "@/core/services/market.service";
 
+defineProps({
+  ledgerPanelVisible: Boolean,
+});
+
 const allCollections = ref([]);
 const collections = ref([]);
 const retrieveOffset = ref(0);
@@ -42,13 +46,18 @@ const loadMoreCollection = () => {
 </script>
 
 <template>
-  <div class="flex-1 sm:pl-5 pb-3.25">
+  <div :class="[ledgerPanelVisible ? 'sm:pl-5' : 'pl-0', 'flex-1 pb-3.25']">
     <div class="mb-10.25">
       <div class="font-press text-lg text-white my-2.75">
         Explore Collections
       </div>
       <div
-        class="grid gap-5 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 pt-2.25"
+        :class="[
+          ledgerPanelVisible
+            ? 'grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4'
+            : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5',
+          'grid gap-5 pt-2.25',
+        ]"
       >
         <collection-card
           v-for="(collection, index) in collections"

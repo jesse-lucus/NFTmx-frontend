@@ -17,6 +17,7 @@ const store = useStore();
 const filterBy = ref("collection");
 const filterActive = ref(false);
 const contract = ref("");
+const ledgerPanelVisible = ref(true);
 
 const clickFilter = () => {
   filterActive.value = !filterActive.value;
@@ -26,6 +27,9 @@ const clickFilterBy = (value) => {
 };
 const filterContract = (address) => {
   contract.value = address;
+};
+const toggleLedgerPanel = () => {
+  ledgerPanelVisible.value = !ledgerPanelVisible.value;
 };
 </script>
 
@@ -70,10 +74,20 @@ const filterContract = (address) => {
       @click-filter-by="clickFilterBy"
       @filter-contract="filterContract"
     />
-    <div class="sm:flex justify-center px-10 py-6.5 lg:px-22">
-      <ledger />
-      <trending-collections v-if="filterBy === 'collection'" />
-      <trending-assets v-if="filterBy === 'lands'" :contract="contract" />
+    <div class="sm:flex justify-center px-4 sm:px-10 py-6.5 lg:px-22">
+      <ledger
+        :ledgerPanelVisible="ledgerPanelVisible"
+        @toggle-ledger-panel="toggleLedgerPanel"
+      />
+      <trending-collections
+        :ledgerPanelVisible="ledgerPanelVisible"
+        v-if="filterBy === 'collection'"
+      />
+      <trending-assets
+        :ledgerPanelVisible="ledgerPanelVisible"
+        v-if="filterBy === 'lands'"
+        :contract="contract"
+      />
     </div>
   </body-container>
 </template>

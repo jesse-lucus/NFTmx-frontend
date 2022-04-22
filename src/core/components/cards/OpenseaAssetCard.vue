@@ -126,9 +126,9 @@ const handleVote = () => {
       </div>
     </div>
     <div class="px-2 shadow-xl">
-      <div class="w-full h-1.25 bg-primary-700" />
+      <div class="w-full h-1.25 bg-primary-200" />
       <div class="px-2">
-        <div class="w-full h-1.25 bg-primary-600" />
+        <div class="w-full h-1.25 bg-primary-100" />
       </div>
     </div>
     <connect-wallet-modal v-model="walletPop" />

@@ -71,7 +71,7 @@ watchEffect(() => {
       </div>
     </div>
     <div
-      class="bg-tertiary-800 border-t border-b border-black py-5 px-10 lg:px-22"
+      class="bg-tertiary-800 border-t border-b border-black py-5 px-4 sm:px-10 lg:px-22"
     >
       <div
         class="flex flex-wrap flex-col xl:flex-row justify-between items-center"
