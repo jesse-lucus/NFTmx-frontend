@@ -9,6 +9,7 @@ import FilterAssets from "./FilterAssets.vue";
 
 defineProps({
   contract: String,
+  ledgerPanelVisible: Boolean,
 });
 
 const allCollections = ref([
@@ -47,13 +48,18 @@ const loadMoreCollection = () => {
 
 <template>
   <div class="flex-1 sm:pl-5 pb-3.25" v-if="contract">
-    <filter-assets title="Explore" :contract="contract" />
+    <filter-assets
+      :ledgerPanelVisible="ledgerPanelVisible"
+      title="Explore"
+      :contract="contract"
+    />
   </div>
   <div class="flex-1 sm:pl-5 pb-3.25" v-if="!contract">
     <filter-assets
       v-for="(collection, index) in collections"
       :key="index"
       :title="collection"
+      :ledgerPanelVisible="ledgerPanelVisible"
     />
     <div class="text-center">
       <section-button

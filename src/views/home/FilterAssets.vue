@@ -11,6 +11,7 @@ import NftmxDivider from "@/core/components/basic/NftmxDivider.vue";
 const props = defineProps({
   title: String,
   contract: { type: String, default: "" },
+  ledgerPanelVisible: Boolean,
 });
 
 const store = useStore();
@@ -113,7 +114,12 @@ watchEffect(() => {
       </template>
       <div class="px-4 pt-2 pb-4">
         <div
-          class="grid gap-4.5 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5"
+          :class="[
+            ledgerPanelVisible
+              ? 'grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5'
+              : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 3xl:grid-cols-6',
+            'grid gap-4.5',
+          ]"
         >
           <opensea-asset-card
             v-for="(asset, index) in assets"
