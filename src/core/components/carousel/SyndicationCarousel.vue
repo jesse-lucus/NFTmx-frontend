@@ -1,5 +1,10 @@
 <template>
-  <carousel :items-to-show="itemsToShow" :wrap-around="true">
+  <carousel
+    :items-to-show="itemsToShow"
+    :wrap-around="true"
+    :modelValue="modelValue"
+    :transition="2900"
+  >
     <slide v-for="(item, index) in syndications" :key="index">
       <div class="carousel__item" :style="{ marginLeft: marginLeft + 'em' }">
         <div
@@ -86,7 +91,7 @@
 </template>
 
 <script setup>
-import { defineComponent, ref, watchEffect } from "vue";
+import { defineComponent, onMounted, onUpdated, ref, watchEffect } from "vue";
 import { Carousel, Navigation, Slide, Pagination } from "vue3-carousel";
 import Ribbon from "@/core/components/basic/Ribbon.vue";
 import NftmxButton from "@/core/components/basic/NftmxButton.vue";
@@ -98,12 +103,19 @@ import NftmxPriceCommon from "@/core/components/price/NftmxPriceCommon.vue";
 import Timer from "@/core/components/timer/Timer.vue";
 import NftmxHelp from "@/core/components/basic/NftmxHelp.vue";
 
+const props = defineProps({
+  carouselPlay: Boolean,
+});
+
 const windowSize = ref({
   width: 0,
   height: 0,
 });
 const itemsToShow = ref(3);
 const marginLeft = ref(-42);
+const modelValue = ref(0);
+
+let intervalCarouselPlay;
 
 function handleResize() {
   windowSize.value.width = window.innerWidth;
@@ -138,6 +150,16 @@ function handleResize() {
 }
 handleResize();
 window.addEventListener("resize", handleResize);
+
+watchEffect(() => {
+  if (props.carouselPlay) {
+    intervalCarouselPlay = setInterval(() => {
+      modelValue.value++;
+    }, 3000);
+  } else {
+    clearInterval(intervalCarouselPlay);
+  }
+});
 </script>
 
 <style scoped>

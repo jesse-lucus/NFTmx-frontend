@@ -1,18 +1,27 @@
 <template>
-  <carousel :items-to-show="itemsToShow" :wrap-around="true">
+  <carousel
+    :items-to-show="itemsToShow"
+    :wrap-around="true"
+    :modelValue="modelValue"
+    :transition="2900"
+  >
     <slide v-for="(item, index) in syndications" :key="index">
       <div class="carousel__item" :style="{ marginLeft: marginLeft + 'em' }">
         <div
           class="transition duration-300 m-4 cursor-default hover:shadow-[0_0px_12px_0px_rgb(0_0_0_/_0.1),_0_0px_0px_0px_rgb(0_0_0_/_0.1);] hover:shadow-primary-900 w-max"
         >
-          <div class="w-70.75 sm:w-141.5 h-72 sm:h-48.75 2xl:w-165 bg-tertiary-900 relative">
+          <div
+            class="w-70.75 sm:w-141.5 h-72 sm:h-48.75 2xl:w-165 bg-tertiary-900 relative"
+          >
             <div class="text-tertiary-400 text-10 text-right">
               <font-awesome-icon
                 :icon="['fas', 'external-link-alt']"
                 class="mr-2 mt-2"
               />
             </div>
-            <div class="grid sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-black px-6 py-2.5">
+            <div
+              class="grid sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-black px-6 py-2.5"
+            >
               <div class="flex items-center gap-4 pb-4 sm:pb-0">
                 <div
                   class="w-18.5 h-18.5"
@@ -65,7 +74,7 @@
 </template>
 
 <script setup>
-import { defineComponent, ref, watchEffect } from "vue";
+import { defineComponent, onMounted, ref, watchEffect } from "vue";
 import { Carousel, Navigation, Slide, Pagination } from "vue3-carousel";
 import Ribbon from "@/core/components/basic/Ribbon.vue";
 import NftmxButton from "@/core/components/basic/NftmxButton.vue";
@@ -77,12 +86,19 @@ import NftmxPriceCommon from "@/core/components/price/NftmxPriceCommon.vue";
 import Timer from "@/core/components/timer/Timer.vue";
 import NftmxHelp from "@/core/components/basic/NftmxHelp.vue";
 
+const props = defineProps({
+  carouselPlay: Boolean,
+});
+
 const windowSize = ref({
   width: 0,
   height: 0,
 });
 const itemsToShow = ref(3);
 const marginLeft = ref(-42);
+const modelValue = ref(0);
+
+let intervalCarouselPlay;
 
 function handleResize() {
   windowSize.value.width = window.innerWidth;
@@ -117,4 +133,13 @@ function handleResize() {
 }
 handleResize();
 window.addEventListener("resize", handleResize);
+watchEffect(() => {
+  if (props.carouselPlay) {
+    intervalCarouselPlay = setInterval(() => {
+      modelValue.value--;
+    }, 3000);
+  } else {
+    clearInterval(intervalCarouselPlay);
+  }
+});
 </script>

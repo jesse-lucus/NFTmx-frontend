@@ -8,6 +8,7 @@ import { themeConfig } from "@/core/config";
 
 defineProps({
   ledgerPanelVisible: Boolean,
+  filterBy: String,
 });
 
 const emit = defineEmits(["toggle-ledger-panel"]);
@@ -71,7 +72,7 @@ watch(windowWidth, (val) => {
   <div class="relative">
     <div
       ref="ledgerAnim"
-      class="w-full sm:w-68 pt-2 cursor-default transition-all overflow-hidden"
+      class="w-full sm:w-68 pt-2 cursor-default transition-all overflow-hidden h-full"
       :style="{
         maxWidth:
           windowWidth >= themeConfig.sm
@@ -107,9 +108,9 @@ watch(windowWidth, (val) => {
           />
         </div>
       </div>
-      <div class="border border-black my-5.5 bg-tertiary-800 w-full sm:w-68">
+      <div class="my-5.5 w-full sm:w-68 h-full">
         <div
-          class="grid grid-cols-4 border-b border-black font-ibm-semi-bold text-11 text-center"
+          class="grid grid-cols-4 border border-black bg-tertiary-800 font-ibm-semi-bold text-11 text-center"
         >
           <div
             @click="selectLedger('SOLD')"
@@ -149,22 +150,36 @@ watch(windowWidth, (val) => {
           </div>
         </div>
         <div
-          class="grid grid-cols-2 border-b border-black font-ibm-bold text-11 text-tertiary-500"
+          class="grid grid-cols-2 bg-tertiary-800 border-b border-x border-black font-ibm-bold text-11 text-tertiary-500"
         >
           <div class="border-r border-black pt-3.5 pb-2.75 pl-3">Items</div>
           <div class="pt-3.5 pb-2.75 pl-3">Price (USD)</div>
         </div>
-        <div class="grid grid-cols-2 border-black text-xs">
-          <template v-for="(item, index) in selectedItems.items" :key="index">
+        <div
+          class="grid grid-cols-2 bg-tertiary-800 border-b border-x border-black text-xs"
+          :style="{
+            height:
+              filterBy === 'collection'
+                ? 'calc(100% - 250px)'
+                : 'calc(100% - 310px)',
+          }"
+        >
+          <div class="border-r border-black">
             <div
+              v-for="(item, index) in selectedItems.items"
+              :key="index"
               :class="[
                 index === selectedItems.items.length - 1 ? 'pb-6.25' : 'pb-1',
-                'text-white border-r border-black pt-5 pl-3',
+                'text-white pt-5 pl-3',
               ]"
             >
               {{ item.tokenName }}
             </div>
+          </div>
+          <div>
             <div
+              v-for="(item, index) in selectedItems.items"
+              :key="index"
               :class="[
                 store.getters['market/etherFromWei'](item.tokenPrice) *
                   bnbPrice >
@@ -186,7 +201,7 @@ watch(windowWidth, (val) => {
                 )
               }}
             </div>
-          </template>
+          </div>
         </div>
       </div>
     </div>

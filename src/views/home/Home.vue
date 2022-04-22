@@ -18,6 +18,7 @@ const filterBy = ref("collection");
 const filterActive = ref(false);
 const contract = ref("");
 const ledgerPanelVisible = ref(true);
+const carouselPlay = ref(false);
 
 const clickFilter = () => {
   filterActive.value = !filterActive.value;
@@ -49,20 +50,24 @@ const toggleLedgerPanel = () => {
   </div>
   <body-container :padding="false" footerExtended>
     <div class="py-6 sm:py-4.25">
-      <syndication-carousel></syndication-carousel>
+      <syndication-carousel :carouselPlay="carouselPlay"></syndication-carousel>
     </div>
     <div class="bg-tertiary-800 border border-black pt-3.5">
-      <backer-carousel />
+      <backer-carousel :carouselPlay="carouselPlay" />
       <div
         class="w-full flex gap-6 justify-center text-tertiary-600 text-sm pt-1 pb-6"
       >
         <font-awesome-icon
+          v-if="!carouselPlay"
           :icon="['fas', 'play']"
           class="text-primary-900 cursor-pointer transition hover:text-primary-900"
+          @click="carouselPlay = true"
         />
         <font-awesome-icon
+          v-if="carouselPlay"
           :icon="['fas', 'pause']"
           class="cursor-pointer transition hover:text-primary-900"
+          @click="carouselPlay = false"
         />
       </div>
     </div>
@@ -77,6 +82,7 @@ const toggleLedgerPanel = () => {
     <div class="sm:flex justify-center px-4 sm:px-10 py-6.5 lg:px-22">
       <ledger
         :ledgerPanelVisible="ledgerPanelVisible"
+        :filterBy="filterBy"
         @toggle-ledger-panel="toggleLedgerPanel"
       />
       <trending-collections
