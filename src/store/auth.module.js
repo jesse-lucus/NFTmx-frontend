@@ -1,4 +1,3 @@
-import Web3 from "web3/dist/web3.min.js"
 import abiJSON from '@/core/config/abi';
 import { marketAddress } from "@/core/config";
 import authService from "@/core/services/auth.service";

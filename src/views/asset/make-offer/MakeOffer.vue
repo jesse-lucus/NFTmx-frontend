@@ -1,43 +1,52 @@
 <script setup>
 import { ref } from 'vue'
 import BodyContainer from '@/core/container/BodyContainer.vue';
-import Accordion from '@/core/components/accordion/BasicAccordion.vue';
-import NftmxFooter from '@/core/container/NftmxFooter.vue';
 import ItemAction from './ItemAction.vue';
 import { useStore } from 'vuex';
-import { useRoute, useRouter } from 'vue-router';
+import { useRoute } from 'vue-router';
 import marketService from '@/core/services/market.service';
 import moralisService from '@/core/services/moralis.service';
-import AssetHistory from '@/views/asset/sell/AssetHistory.vue';
-import authService from '@/core/services/auth.service';
+import AssetHistory from '@/core/components/asset/AssetHistory.vue';
 import AssetInfo from '@/core/components/asset/AssetInfo.vue';
+import AssetSummary from '@/core/components/asset/AssetSummary.vue';
+import { themeConfig } from '@/core/config';
+import AssetOffers from '@/core/components/asset/AssetOffers.vue';
+import AssetLedger from '@/core/components/asset/AssetLedger.vue';
 
 const store = useStore();
 const route = useRoute();
-const router = useRouter();
-const tokenAddress = route.params.tokenAddress;
-const tokenId = route.params.tokenId;
+const id = route.params.id;
 const asset = ref({});
 
-marketService.getAsset(tokenAddress, tokenId).then(res => {
+marketService.getAsset(id).then(res => {
     asset.value = res.data;
 });
 </script>
 
 <template>
     <body-container>
-        <div class="grid grid-cols-7 text-white gap-8 mt-11">
-            <div class="col-span-7 lg:col-span-3 lg:mr-6.25">
-                <asset-info
-                    :asset="asset"
-                />
+        <div class="grid grid-cols-7 text-white gap-8 mt-4 lg:mt-9">
+            <div class="col-span-7 lg:col-span-3">
+                <asset-summary v-if="store.state.app.windowWidth < themeConfig.lg" :asset="asset" />
+                <asset-info :asset="asset" />
             </div>
-            <div class="col-span-7 mt-6 mb-4 lg:col-span-4 relative lg:-ml-4">
-                <item-action :asset="asset" />
+            <div class="col-span-7 lg:col-span-4 relative">
+                <asset-summary v-if="store.state.app.windowWidth >= themeConfig.lg" :asset="asset" />
+                <div class="mt-3.25">
+                    <item-action :asset="asset" />
+                </div>
             </div>
         </div>
         <div class="mb-10">
-            <asset-history />
+            <div>
+                <asset-history />
+            </div>
+            <div class="mt-4">
+                <asset-offers />
+            </div>
+            <div class="mt-4">
+                <asset-ledger />
+            </div>
         </div>
     </body-container>
 </template>
