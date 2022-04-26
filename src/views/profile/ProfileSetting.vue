@@ -8,12 +8,12 @@ import NftmxSelectNetwork from '@/core/components/basic/NftmxSelectNetwork.vue';
 import SettingItemRow from '@/core/components/basic/SettingItemRow.vue';
 import NftmxFileUploader from '@/core/components/file-uploader/NftmxFileUploader.vue';
 import NavBarSearch from '@/core/components/search/NavBarSearch.vue';
-import NftmxInput from '@/core/components/basic/NftmxInput.vue';
 import NftmxTextarea from '@/core/components/basic/NftmxTextarea.vue';
 import NftmxButton from '@/core/components/basic/NftmxButton.vue';
 import { baseURL, defaultUser } from '@/core/config'
 import { useToast } from "vue-toastification";
 import { emailValidate } from '@/core/utils';
+import NftmxIconInput from '@/core/components/basic/NftmxIconInput.vue';
 
 const store = useStore();
 const walletAddress = computed(() => store.getters['auth/walletAddress'])
@@ -93,7 +93,7 @@ const onCopy = (e) => {
                 </template>
                 <template v-slot:value>
                     <div class="font-ibm text-sm text-tertiary-400 mt-3 md:mt-0">
-                        <nftmx-input v-model="name" />
+                        <nftmx-icon-input v-model="name" />
                     </div>
                 </template>
             </setting-item-row>
@@ -174,7 +174,7 @@ const onCopy = (e) => {
                 </template>
                 <template v-slot:value>
                     <div class="relative font-ibm text-sm text-tertiary-400 pt-3 md:pt-0">
-                        <nftmx-input v-model="email" />
+                        <nftmx-icon-input v-model="email" />
                         <div
                             v-if="!isEmail"
                             class="absolute font-ibm text-11 text-red-900 mt-1"
@@ -189,7 +189,7 @@ const onCopy = (e) => {
                 <template v-slot:value>
                     <div class="font-ibm text-sm text-tertiary-400 pt-4 md:pt-0">
                         <div>
-                            <nftmx-input
+                            <nftmx-icon-input
                                 v-model="website"
                                 iconGroup="fas"
                                 icon="globe"
@@ -197,7 +197,7 @@ const onCopy = (e) => {
                             />
                         </div>
                         <div class="pt-4.75">
-                            <nftmx-input
+                            <nftmx-icon-input
                                 v-model="twitter"
                                 iconGroup="fab"
                                 icon="twitter"
@@ -205,7 +205,7 @@ const onCopy = (e) => {
                             />
                         </div>
                         <div class="pt-4.75">
-                            <nftmx-input
+                            <nftmx-icon-input
                                 v-model="instagram"
                                 iconGroup="fab"
                                 icon="instagram"
@@ -224,7 +224,7 @@ const onCopy = (e) => {
                         class="flex font-ibm text-sm text-tertiary-400 mt-3 md:mt-0 cursor-default"
                     >
                         <div class="w-full">
-                            <nftmx-input :placeholder="walletAddress" readonly />
+                            <nftmx-icon-input :placeholder="walletAddress" readonly />
                         </div>
                         <div
                             class="text-white hover:text-primary-900 text-base right-6 top-4 cursor-pointer float-right w-fit -ml-9 mt-4"
