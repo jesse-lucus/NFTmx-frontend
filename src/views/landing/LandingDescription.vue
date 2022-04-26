@@ -8,7 +8,7 @@ import LandingSection from "./containers/LandingSection.vue";
       class="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-tertiary-900 text-center"
     >
       <div class="md:pr-20 2xl:pr-40 pb-10 md:pb-0">
-        <div>
+        <div class="flex justify-center">
           <img src="/images/landing/for-buyers.png" />
         </div>
         <div class="text-xl lg:text-2xl font-ibm-bold mt-6 mb-4.5">
@@ -27,7 +27,7 @@ import LandingSection from "./containers/LandingSection.vue";
         </div>
       </div>
       <div class="mt-6 sm:mt-0 md:pl-20 2xl:pl-40 pt-10 md:pt-0">
-        <div>
+        <div class="flex justify-center">
           <img src="/images/landing/for-sellers.png" />
         </div>
         <div class="text-xl lg:text-2xl font-ibm-bold mt-6 mb-4.5">

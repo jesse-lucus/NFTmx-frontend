@@ -26,11 +26,11 @@
                 <div
                   class="w-18.5 h-18.5"
                   :style="{
-                    background: 'url(' + '/images/nfts/img2.png' + ')',
+                    background: 'url(' + '/images/components/drag-drop-logo.png' + ')',
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
-                    backgroundColor: '#222222',
+                    backgroundColor: 'black',
                   }"
                 />
                 <div class="font-ibm-medium text-left">

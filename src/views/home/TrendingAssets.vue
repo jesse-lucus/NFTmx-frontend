@@ -2,7 +2,6 @@
 import { computed, onMounted, ref } from "vue";
 import Accordion from "@/core/components/accordion/BasicAccordion.vue";
 import AccordionContainer from "./container/AccordionContainer.vue";
-import { openseaTrendingCollections } from "@/core/config";
 import openseaService from "@/core/services/opensea.service";
 import SectionButton from "@/core/components/buttons/SectionButton.vue";
 import FilterAssets from "./FilterAssets.vue";

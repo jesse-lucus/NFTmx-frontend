@@ -12,11 +12,14 @@ import NftmxButton from "@/core/components/basic/NftmxButton.vue";
 import NftmxBadge from "@/core/components/basic/NftmxBadge.vue";
 import marketService from "@/core/services/market.service";
 import AccountModal from "@/core/components/modal/AccountModal.vue";
+import { useRouter } from "vue-router";
 
 const store = useStore();
 const walletAddress = computed(() => store.getters["auth/walletAddress"]);
 const orderLogs = ref([]);
 const accountModal = ref(false);
+const listButtonName = ref("List NFT");
+const router = useRouter();
 
 marketService.getOrderLogs(1, 20).then((res) => {
   orderLogs.value = res.data.items;
@@ -33,6 +36,11 @@ const toggleSidebar = () => {
 const toggleNotificationBar = () => {
   store.commit("app/TOGGLE_NOTIFICATION_BAR", !store.state.app.logBarOpened);
   store.commit("app/TOGGLE_MENU", false);
+};
+const connectWallet = () => {
+  if (typeof window.ethereum !== "undefined") {
+    ethereum.request({ method: "eth_requestAccounts" });
+  }
 };
 </script>
 
@@ -65,13 +73,25 @@ const toggleNotificationBar = () => {
           </nav-bar-item>
           <nav-bar-item class="hidden lg:block">
             <div>
-              <nftmx-button
+              <button
                 to="/profile"
-                color="primary"
-                label="List NFT"
                 outline
-                class="h-6 w-37 font-ibm-bold transition text-white text-xs"
-              />
+                :class="[
+                  walletAddress
+                    ? 'hover:bg-primary-900'
+                    : 'hover:border-0 hover:bg-tertiary-700',
+                  'h-8.75 w-37 font-ibm-medium transition text-white text-sm border-2 border-primary-900',
+                ]"
+                @mouseover="
+                  walletAddress ? '' : (listButtonName = 'Connect Wallet')
+                "
+                @mouseout="listButtonName = 'List NFT'"
+                @click="
+                  walletAddress ? router.push('/profile') : connectWallet()
+                "
+              >
+                {{ listButtonName }}
+              </button>
             </div>
           </nav-bar-item>
           <nav-bar-item @click="toggleSidebar" class="hover:text-primary-900">

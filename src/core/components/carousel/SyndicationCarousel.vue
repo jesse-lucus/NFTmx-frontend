@@ -1,3 +1,75 @@
+<script setup>
+import { defineComponent, onMounted, onUpdated, ref, watchEffect } from "vue";
+import { Carousel, Navigation, Slide, Pagination } from "vue3-carousel";
+import Ribbon from "@/core/components/basic/Ribbon.vue";
+import NftmxButton from "@/core/components/basic/NftmxButton.vue";
+import NftmxProgressBar from "@/core/components/basic/NftmxProgressBar.vue";
+import "vue3-carousel/dist/carousel.css";
+import { themeConfig, syndications } from "@/core/config";
+import NftmxTrimString from "@/core/components/basic/NftmxTrimString.vue";
+import NftmxPriceCommon from "@/core/components/price/NftmxPriceCommon.vue";
+import Timer from "@/core/components/timer/Timer.vue";
+import NftmxHelp from "@/core/components/basic/NftmxHelp.vue";
+import BundleImage from "@/core/components/basic/BundleImage.vue";
+
+const props = defineProps({
+  carouselPlay: Boolean,
+});
+
+const windowSize = ref({
+  width: 0,
+  height: 0,
+});
+const itemsToShow = ref(3);
+const marginLeft = ref(-42);
+const modelValue = ref(0);
+let intervalCarouselPlay;
+
+function handleResize() {
+  windowSize.value.width = window.innerWidth;
+  windowSize.value.height = window.innerHeight;
+  if (windowSize.value.width >= 1920) {
+    itemsToShow.value = 2.7;
+  } else if (windowSize.value.width < 640) {
+    itemsToShow.value = 1.01;
+    marginLeft.value = 0;
+  } else {
+    const base = windowSize.value.width >= 1190 ? 2 : 1;
+    const adjust =
+      windowSize.value.width >= 1536
+        ? 1410
+        : windowSize.value.width >= 1190
+        ? 1192
+        : 600;
+    const adjustLeft =
+      windowSize.value.width >= 1536
+        ? -42
+        : windowSize.value.width >= 1190
+        ? -38
+        : -37;
+    const adjustDivide = windowSize.value.width >= 1190 ? 660 : 566;
+    itemsToShow.value = (windowSize.value.width - adjust) / adjustDivide + base;
+    if (itemsToShow.value > 2) {
+      marginLeft.value = adjustLeft;
+    } else {
+      marginLeft.value = 0;
+    }
+  }
+}
+handleResize();
+window.addEventListener("resize", handleResize);
+
+watchEffect(() => {
+  if (props.carouselPlay) {
+    intervalCarouselPlay = setInterval(() => {
+      modelValue.value++;
+    }, 3000);
+  } else {
+    clearInterval(intervalCarouselPlay);
+  }
+});
+</script>
+
 <template>
   <carousel
     :items-to-show="itemsToShow"
@@ -10,13 +82,8 @@
         <div
           class="transition duration-300 grid grid-cols-2 m-4 cursor-default hover:shadow-[0_0px_12px_0px_rgb(0_0_0_/_0.1),_0_0px_0px_0px_rgb(0_0_0_/_0.1);] hover:shadow-primary-700"
         >
-          <div
-            :style="{
-              background: 'url(' + item.img + ')',
-              backgroundRepeat: 'no-repeat',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }"
+          <bundle-image
+            :images="item.img"
             class="relative w-70.75 h-70.75 2xl:w-82.5 2xl:h-82.5 overflow-hidden col-span-2 sm:col-span-1"
           />
           <div
@@ -89,78 +156,6 @@
     </slide>
   </carousel>
 </template>
-
-<script setup>
-import { defineComponent, onMounted, onUpdated, ref, watchEffect } from "vue";
-import { Carousel, Navigation, Slide, Pagination } from "vue3-carousel";
-import Ribbon from "@/core/components/basic/Ribbon.vue";
-import NftmxButton from "@/core/components/basic/NftmxButton.vue";
-import NftmxProgressBar from "@/core/components/basic/NftmxProgressBar.vue";
-import "vue3-carousel/dist/carousel.css";
-import { themeConfig, syndications } from "@/core/config";
-import NftmxTrimString from "@/core/components/basic/NftmxTrimString.vue";
-import NftmxPriceCommon from "@/core/components/price/NftmxPriceCommon.vue";
-import Timer from "@/core/components/timer/Timer.vue";
-import NftmxHelp from "@/core/components/basic/NftmxHelp.vue";
-
-const props = defineProps({
-  carouselPlay: Boolean,
-});
-
-const windowSize = ref({
-  width: 0,
-  height: 0,
-});
-const itemsToShow = ref(3);
-const marginLeft = ref(-42);
-const modelValue = ref(0);
-
-let intervalCarouselPlay;
-
-function handleResize() {
-  windowSize.value.width = window.innerWidth;
-  windowSize.value.height = window.innerHeight;
-  if (windowSize.value.width >= 1920) {
-    itemsToShow.value = 2.7;
-  } else if (windowSize.value.width < 640) {
-    itemsToShow.value = 1.01;
-    marginLeft.value = 0;
-  } else {
-    const base = windowSize.value.width >= 1190 ? 2 : 1;
-    const adjust =
-      windowSize.value.width >= 1536
-        ? 1410
-        : windowSize.value.width >= 1190
-        ? 1192
-        : 600;
-    const adjustLeft =
-      windowSize.value.width >= 1536
-        ? -42
-        : windowSize.value.width >= 1190
-        ? -38
-        : -37;
-    const adjustDivide = windowSize.value.width >= 1190 ? 660 : 566;
-    itemsToShow.value = (windowSize.value.width - adjust) / adjustDivide + base;
-    if (itemsToShow.value > 2) {
-      marginLeft.value = adjustLeft;
-    } else {
-      marginLeft.value = 0;
-    }
-  }
-}
-handleResize();
-window.addEventListener("resize", handleResize);
-
-watchEffect(() => {
-  if (props.carouselPlay) {
-    intervalCarouselPlay = setInterval(() => {
-      modelValue.value++;
-    }, 3000);
-  } else {
-    clearInterval(intervalCarouselPlay);
-  }
-});
-</script>
 
 <style scoped>
 .w-fill {

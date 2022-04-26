@@ -12,7 +12,7 @@ defineProps({
     default: "tertiary-800",
   },
 });
-const time = ref(8);
+const time = ref(80000);
 const day = computed(() => parseInt(time.value / 86400));
 const day1 = computed(() => parseInt(day.value / 10));
 const day2 = computed(() => day.value % 10);

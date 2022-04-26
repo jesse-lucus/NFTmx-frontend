@@ -12,9 +12,9 @@ import AnalyzerCardContainer from './container/AnalyzerCardContainer.vue';
         <analyzer-card-container>
             <div class="h-9 flex justify-center">
                 Decentralized Venture Capital
-                <nftmx-help class="text-8" />
+                <nftmx-help class="text-10" />
             </div>
-            <div class="font-ibm-semi-bold text-lg sm:text-xl text-center pt-2">
+            <div class="font-ibm-semi-bold text-lg sm:text-xl text-center pt-2 flex justify-center">
                 <nftmx-price :price="1548985.53" color="secondary"></nftmx-price>
             </div>
             <div class="text-11 font-ibm text-tertiary-400 pt-2.5 pb-3">
@@ -25,22 +25,22 @@ import AnalyzerCardContainer from './container/AnalyzerCardContainer.vue';
             </div>
         </analyzer-card-container>
         <analyzer-card-container>
-            <div class="h-10 flex justify-center items-center">Downside Protection</div>
-            <div class="font-ibm-semi-bold text-lg sm:text-xl text-center pt-2">
+            <div class="h-10 flex justify-center items-center">Downside Protection Pending</div>
+            <div class="font-ibm-semi-bold text-lg sm:text-xl text-center pt-2 flex justify-center">
                 <nftmx-price :price="6452653.3248"></nftmx-price>
             </div>
         </analyzer-card-container>
         <analyzer-card-container>
             <div class="h-10 flex justify-center items-center">Total sales to Date</div>
-            <div class="font-ibm-semi-bold text-lg sm:text-xl text-center pt-2">
+            <div class="font-ibm-semi-bold text-lg sm:text-xl text-center pt-2 flex justify-center">
                 <nftmx-price :price="1256859.6559"></nftmx-price>
             </div>
         </analyzer-card-container>
         <analyzer-card-container>
             <div
                 class="h-10 flex justify-center items-center"
-            >Decentralized Venture Capital Available</div>
-            <div class="font-ibm-semi-bold text-lg sm:text-xl text-center pt-2">
+            >APY Rewards to Date</div>
+            <div class="font-ibm-semi-bold text-lg sm:text-xl text-center pt-2 flex justify-center">
                 <nftmx-price :price="25689963.3289"></nftmx-price>
             </div>
         </analyzer-card-container>
