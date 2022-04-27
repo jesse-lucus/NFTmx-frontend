@@ -1,9 +1,10 @@
 <script setup>
 import BundleImage from "@/core/components/basic/BundleImage.vue";
+import NftmxTrimString from "@/core/components/basic/NftmxTrimString.vue";
+
 const props = defineProps({
   collection: Object,
 });
-console.log(props.collection);
 </script>
 
 <template>
@@ -39,7 +40,7 @@ console.log(props.collection);
         <div
           class="absolute top-0 -right-1 w-fill h-11 bg-primary-900 bg-opacity-60 px-4 flex items-center"
         >
-          <div class="text-sm text-white">
+          <div class="text-sm text-white leading-4">
             10%-100% / 7-365 Downside Protection
           </div>
           <div
@@ -50,12 +51,15 @@ console.log(props.collection);
           class="absolute top-0 -right-1 w-fill bg-tertiary-900 px-4 h-11 -z-10"
         ></div>
       </div>
-      <div class="bg-tertiary-700 px-5 pt-4 pb-6">
+      <div class="bg-tertiary-700 px-5 pt-4 pb-6.5">
         <div class="text-tertiary-400 text-xs">Created by</div>
-        <div class="text-white text-lg my-1.5">
+        <nftmx-trim-string
+          :line="2"
+          class="text-white text-lg mt-2.25 leading-5 h-9"
+        >
           {{ collection.name }}
-        </div>
-        <div class="grid grid-cols-2 gap-y-3 mt-5.75">
+        </nftmx-trim-string>
+        <div class="grid grid-cols-2 gap-y-3 mt-3">
           <div>
             <div class="text-white text-11">Items</div>
             <div class="text-primary-900 text-11 my-1">

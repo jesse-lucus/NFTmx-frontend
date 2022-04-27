@@ -35,7 +35,6 @@ const image = computed(() =>
     ? props.asset.imageUrl.replace("ipfs://", "https://ipfs.io:/ipfs/")
     : props.asset.imageUrl
 );
-console.log(props.asset.imageUrl.indexOf("ipfs://"));
 
 const handleVote = () => {
   vote.value = !vote.value;

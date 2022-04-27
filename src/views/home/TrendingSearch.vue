@@ -173,7 +173,7 @@ watchEffect(() => {
                       <div
                         v-for="(collection, index) in filteredCollections"
                         :key="index"
-                        class="flex items-center gap-3.5 font-ibm text-white text-xs py-1.75 cursor-pointer transition hover:text-primary-900"
+                        class="flex items-center gap-3.5 font-ibm text-white text-11 py-1.75 cursor-pointer transition hover:text-primary-900"
                         @click="filterCollection(collection.address)"
                       >
                         <div
@@ -216,8 +216,8 @@ watchEffect(() => {
                 <template v-slot:content>
                   <div class="h-64 py-4">
                     <div class="flex flex-col h-full gap-3.5 overflow-auto">
-                      <filter-item title="Most value" />
                       <filter-item title="Most activity" />
+                      <filter-item title="Most view" />
                       <filter-item title="Most liked" />
                       <filter-item title="Most new" />
                       <filter-item title="Biggest sales" />
