@@ -1,7 +1,9 @@
 <script setup>
+import BundleImage from "@/core/components/basic/BundleImage.vue";
 const props = defineProps({
   collection: Object,
 });
+console.log(props.collection);
 </script>
 
 <template>
@@ -15,17 +17,25 @@ const props = defineProps({
     <div
       class="transition hover:shadow-[0_0px_12px_0px_rgb(0_0_0_/_0.1),_0_0px_0px_0px_rgb(0_0_0_/_0.1);] hover:shadow-primary-900"
     >
-      <div class="bg-black relative z-10">
-        <div
-          class="relative w-full pt-[80%] p-6"
-          :style="{
-            background: 'url(' + collection.imageUrl + ')',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundColor: 'black',
-          }"
-        />
+      <div class="relative z-10">
+        <div class="bg-black relative w-full pt-[80%] p-6">
+          <bundle-image
+            class="absolute top-0 left-0"
+            :images="
+              collection.symbol === 'PUNK' || collection.symbol === 'BAYC'
+                ? [
+                    collection.imageUrl,
+                    collection.imageUrl,
+                    collection.imageUrl,
+                    collection.imageUrl,
+                    collection.imageUrl,
+                    collection.imageUrl,
+                    collection.imageUrl,
+                  ]
+                : collection.imageUrl
+            "
+          />
+        </div>
         <div
           class="absolute top-0 -right-1 w-fill h-11 bg-primary-900 bg-opacity-60 px-4 flex items-center"
         >

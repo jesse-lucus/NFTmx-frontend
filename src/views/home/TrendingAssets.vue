@@ -53,19 +53,22 @@ const loadMoreCollection = () => {
       :contract="contract"
     />
   </div>
-  <div class="flex-1 sm:pl-5 pb-3.25" v-if="!contract">
+  <div class="flex-1 sm:pl-5 pb-20" v-if="!contract">
     <filter-assets
       v-for="(collection, index) in collections"
       :key="index"
+      :last="index === collections.length - 1"
       :title="collection"
       :ledgerPanelVisible="ledgerPanelVisible"
     />
-    <div class="text-center">
-      <section-button
-        v-if="more"
-        label="SEE MORE"
-        @click="loadMoreCollection"
-      />
+    <div class="absolute bottom-0 left-0 flex justify-center w-full h-23">
+      <div class="text-center">
+        <section-button
+          v-if="more"
+          label="SEE MORE"
+          @click="loadMoreCollection"
+        />
+      </div>
     </div>
   </div>
 </template>

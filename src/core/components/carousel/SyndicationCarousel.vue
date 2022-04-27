@@ -21,7 +21,7 @@ const windowSize = ref({
   height: 0,
 });
 const itemsToShow = ref(3);
-const marginLeft = ref(-42);
+const marginLeft = ref(-44);
 const modelValue = ref(0);
 let intervalCarouselPlay;
 
@@ -43,7 +43,7 @@ function handleResize() {
         : 600;
     const adjustLeft =
       windowSize.value.width >= 1536
-        ? -42
+        ? -44
         : windowSize.value.width >= 1190
         ? -38
         : -37;

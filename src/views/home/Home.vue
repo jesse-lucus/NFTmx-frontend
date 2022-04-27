@@ -84,7 +84,7 @@ const setCollections = (value) => {
       @filter-contract="filterContract"
       :collections="collections"
     />
-    <div class="sm:flex justify-center px-4 sm:px-10 py-6.5 lg:px-22">
+    <div class="relative sm:flex justify-center px-4 sm:px-10 pt-6.5 pb-15 lg:px-22">
       <ledger
         :ledgerPanelVisible="ledgerPanelVisible"
         :filterBy="filterBy"

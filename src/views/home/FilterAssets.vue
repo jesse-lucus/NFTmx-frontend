@@ -12,6 +12,7 @@ const props = defineProps({
   title: String,
   contract: { type: String, default: "" },
   ledgerPanelVisible: Boolean,
+  last: Boolean,
 });
 
 const store = useStore();
@@ -149,5 +150,5 @@ watchEffect(() => {
       </div>
     </accordion>
   </div>
-  <nftmx-divider class="mt-8.5 mb-6" />
+  <nftmx-divider v-if="!last" class="mt-8.5 mb-6" />
 </template>

@@ -30,6 +30,12 @@ const transferred = ref("not");
 const price = ref(0);
 const open = ref(false);
 const walletPop = ref(false);
+const image = computed(() =>
+  props.asset.imageUrl.indexOf("ipfs://") === 0
+    ? props.asset.imageUrl.replace("ipfs://", "https://ipfs.io:/ipfs/")
+    : props.asset.imageUrl
+);
+console.log(props.asset.imageUrl.indexOf("ipfs://"));
 
 const handleVote = () => {
   vote.value = !vote.value;
@@ -63,7 +69,7 @@ const handleVote = () => {
       <div
         class="relative w-full overflow-hidden pt-73per"
         :style="{
-          background: `url( ${asset.imageUrl} )`,
+          background: `url( ${image} )`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -125,7 +131,7 @@ const handleVote = () => {
         </div>
       </div>
     </div>
-    <div class="px-2 shadow-xl">
+    <div v-if="asset.bundled" class="px-2 shadow-xl">
       <div class="w-full h-1.25 bg-primary-200" />
       <div class="px-2">
         <div class="w-full h-1.25 bg-primary-100" />

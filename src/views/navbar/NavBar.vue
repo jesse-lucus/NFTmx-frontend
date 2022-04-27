@@ -74,7 +74,6 @@ const connectWallet = () => {
           <nav-bar-item class="hidden lg:block">
             <div>
               <button
-                to="/profile"
                 outline
                 :class="[
                   walletAddress

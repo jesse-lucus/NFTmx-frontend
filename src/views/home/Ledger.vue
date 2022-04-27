@@ -156,12 +156,12 @@ watch(windowWidth, (val) => {
           <div class="pt-3.5 pb-2.75 pl-3">Price (USD)</div>
         </div>
         <div
-          class="grid grid-cols-2 bg-tertiary-800 border-b border-x border-black text-xs"
+          class="grid grid-cols-2 bg-tertiary-800 border-b border-x border-black text-xs overflow-hidden"
           :style="{
             height:
               filterBy === 'collection'
-                ? 'calc(100% - 250px)'
-                : 'calc(100% - 310px)',
+                ? 'calc(100% - 196px)'
+                : 'calc(100% - 258px)',
           }"
         >
           <div class="border-r border-black">

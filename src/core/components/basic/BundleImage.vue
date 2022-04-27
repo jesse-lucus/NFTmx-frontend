@@ -7,8 +7,8 @@ const props = defineProps({
     type: String,
     default: "col",
   },
+  test: String,
 });
-console.log("=", props.images);
 </script>
 
 <template>
@@ -27,17 +27,22 @@ console.log("=", props.images);
       <div
         v-if="images.length > 1"
         :class="[
-          'w-full h-full grid',
-          grid === 'col' ? 'grid-cols-2' : 'grid-rows-2',
+          'w-full h-full grid divide-tertiary-900',
+          grid === 'col' ? 'grid-cols-2 divide-x-2' : 'grid-rows-2 divide-y-2',
         ]"
       >
         <bundle-image
           :grid="grid === 'col' ? 'row' : 'col'"
-          :images="images.splice(0, Math.round(images.length / 2))"
+          :images="
+            images.splice(
+              0,
+              Math.round(Math.random() * (props.images.length - 2)) + 1
+            )
+          "
         ></bundle-image>
         <bundle-image
           :grid="grid === 'col' ? 'row' : 'col'"
-          :images="images.splice(0, Math.round(images.length / 2))"
+          :images="images"
         ></bundle-image>
       </div>
       <div

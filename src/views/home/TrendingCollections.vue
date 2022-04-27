@@ -80,12 +80,14 @@ const loadMoreCollection = () => {
     >
       No Collections found
     </div>
-    <div class="text-center">
-      <section-button
-        v-if="more"
-        label="SEE MORE"
-        @click="loadMoreCollection"
-      />
+    <div class="absolute bottom-0 left-0 flex justify-center w-full h-23">
+      <div class="text-center">
+        <section-button
+          v-if="more"
+          label="SEE MORE"
+          @click="loadMoreCollection"
+        />
+      </div>
     </div>
   </div>
 </template>
