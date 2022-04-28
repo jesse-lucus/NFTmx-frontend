@@ -8,72 +8,18 @@ import Timer from "@/core/components/timer/Timer.vue";
 import NftmxHelp from "@/core/components/basic/NftmxHelp.vue";
 import { themeConfig } from "@/core/config";
 import { useStore } from "vuex";
-const syndications = [
-  {
-    img: [
-      "/images/nfts/img1.png",
-      "/images/nfts/img2.png",
-      "/images/nfts/img3.png",
-      "/images/nfts/img4.png",
-      "/images/nfts/img5.png",
-      "/images/nfts/img6.png",
-      "/images/nfts/img7.png",
-      "/images/nfts/img8.png",
-    ],
-    type: "AUCTION",
-    lockedValue: 1548325.56,
-  },
-  {
-    img: [
-      "/images/nfts/img1.png",
-      "/images/nfts/img2.png",
-      "/images/nfts/img3.png",
-      "/images/nfts/img4.png",
-      "/images/nfts/img5.png",
-      "/images/nfts/img6.png",
-      "/images/nfts/img7.png",
-      "/images/nfts/img8.png",
-    ],
-    type: "FIX_SALE",
-    fixPrice: 50000,
-    lockedValue: 1548325.56,
-  },
-  {
-    img: "/images/nfts/img3.png",
-    type: "FIX_SALE",
-    fixPrice: 50000,
-    lockedValue: 1548325.56,
-  },
-  {
-    img: "/images/nfts/img4.png",
-    type: "AUCTION",
-    lockedValue: 1548325.56,
-  },
-  {
-    img: "/images/nfts/img5.png",
-    type: "FIX_SALE",
-    fixPrice: 50000,
-    lockedValue: 1548325.56,
-  },
-  {
-    img: "/images/nfts/img6.png",
-    type: "AUCTION",
-    lockedValue: 1548325.56,
-  },
-];
 
 const props = defineProps({
   carouselPlay: Boolean,
 });
 
 const store = useStore();
-const cards = ref(syndications);
+const cards = ref([1,2,3,4,5,6]);
 const innerStyles = ref({});
 const step = ref("");
 const transitioning = ref(false);
 const inner = ref(null);
 onMounted(() => {
-  console.log(inner.value.scrollWidth);
 });
 </script>
 

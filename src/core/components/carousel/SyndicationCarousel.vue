@@ -73,7 +73,6 @@ const step = ref("");
 const transitioning = ref(false);
 const inner = ref(null);
 onMounted(() => {
-  console.log(inner.value.scrollWidth);
 });
 </script>
 

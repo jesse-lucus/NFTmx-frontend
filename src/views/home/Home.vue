@@ -41,8 +41,15 @@ const setCollections = (value) => {
 
 <template>
   <div
-    class="bg-[url('/images/landing/hero-image-1920.png')] bg-no-repeat bg-cover bg-right font-press sm:leading-relaxed xl:leading-relaxed text-white px-5.5 sm:px-10 md:px-16 lg:px-22 h-summary-xs lg:h-96 xl:h-asset-img"
+    class="relative bg-[url('/images/landing/hero-image-bg-1920.png')] bg-no-repeat bg-cover bg-right font-press sm:leading-relaxed xl:leading-relaxed text-white px-5.5 sm:px-10 md:px-16 lg:px-22 h-summary-xs lg:h-96 xl:h-asset-img"
   >
+    <div
+      class="w-full h-full absolute right-0 overflow-hidden flex items-center"
+    >
+      <div class="h-1/2 w-full animation absolute"></div>
+      <div class="h-1/2 w-full animation1 absolute"></div>
+      <div class="h-1/2 w-full panel absolute"></div>
+    </div>
     <div class="max-w-screen-3xl mx-auto">
       <div
         class="relative top-16.75 lg:top-36 xl:top-45.5 w-home-sm lg:w-home-md xl:w-home-lg"
@@ -106,3 +113,49 @@ const setCollections = (value) => {
     </div>
   </body-container>
 </template>
+
+<style scoped>
+.perspective {
+  perspective: 100px;
+}
+.panel {
+  transform: perspective(15px) rotateY(-3deg);
+  background: linear-gradient(
+    to right,
+    rgba(44, 50, 51, 0.2),
+    rgba(255, 255, 255, 0)
+  );
+}
+.animation {
+  transform: perspective(15px) rotateY(-3deg);
+  background: url("/images/landing/hero-nfts.png");
+  background-repeat: repeat;
+  animation: animatedBackground 500s linear infinite;
+  background-size: contain;
+}
+@keyframes animatedBackground {
+  from {
+    background-position: 0 0;
+  }
+  /*use negative width if you want it to flow right to left else and positive for left to right*/
+  to {
+    background-position: -10000px 0;
+  }
+}
+.animation1 {
+  transform: perspective(15px) rotateY(-3deg);
+  background: url("/images/landing/hero-nfts.png");
+  background-repeat: repeat;
+  animation: animatedBackground1 500s linear infinite;
+  background-size: contain;
+}
+@keyframes animatedBackground1 {
+  from {
+    background-position: -100px 0;
+  }
+  /*use negative width if you want it to flow right to left else and positive for left to right*/
+  to {
+    background-position: -10000px 0;
+  }
+}
+</style>
