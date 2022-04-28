@@ -12,6 +12,7 @@ import Analyzer from "./Analyzer.vue";
 import BackerCarousel from "@/core/components/carousel/BackerCarousel.vue";
 import TrendingCollections from "./TrendingCollections.vue";
 import Ledger from "./Ledger.vue";
+import BasicCarousel from "@/core/components/carousel/BasicCarousel.vue";
 
 const store = useStore();
 const filterBy = ref("collection");
@@ -84,7 +85,9 @@ const setCollections = (value) => {
       @filter-contract="filterContract"
       :collections="collections"
     />
-    <div class="relative sm:flex justify-center px-4 sm:px-10 pt-6.5 pb-15 lg:px-22">
+    <div
+      class="relative sm:flex justify-center px-4 sm:px-10 pt-6.5 pb-15 lg:px-22"
+    >
       <ledger
         :ledgerPanelVisible="ledgerPanelVisible"
         :filterBy="filterBy"

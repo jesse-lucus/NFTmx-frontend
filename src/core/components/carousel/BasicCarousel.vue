@@ -96,78 +96,64 @@ onMounted(() => {
         :key="index"
       >
         <div
-          class="w-max transition grid grid-cols-2 m-4 cursor-default hover:shadow-[0_0px_12px_0px_rgb(0_0_0_/_0.1),_0_0px_0px_0px_rgb(0_0_0_/_0.1);] hover:shadow-primary-700"
+          class="transition duration-300 m-4 cursor-default hover:shadow-[0_0px_12px_0px_rgb(0_0_0_/_0.1),_0_0px_0px_0px_rgb(0_0_0_/_0.1);] hover:shadow-primary-900 w-max"
         >
-          <bundle-image
-            :images="JSON.parse(JSON.stringify(item.img))"
-            class="relative w-70.75 h-70.75 2xl:w-82.5 2xl:h-82.5 overflow-hidden col-span-2 sm:col-span-1"
-          />
           <div
-            class="flex flex-col justify-between relative w-70.75 h-70.75 2xl:w-82.5 2xl:h-82.5 bg-black text-white col-span-2 sm:col-span-1"
+            class="w-70.75 sm:w-141.5 h-72 sm:h-48.75 2xl:w-165 bg-tertiary-900 relative"
           >
+            <div class="text-tertiary-400 text-10 text-right">
+              <font-awesome-icon
+                :icon="['fas', 'external-link-alt']"
+                class="mr-2 mt-2"
+              />
+            </div>
             <div
-              class="absolute top-0 -right-1 w-fill h-11 bg-primary-900 bg-opacity-90 font-ibm-medium text-white text-11 2xl:text-13 flex items-center justify-center"
+              class="grid sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-black px-6 py-2.5"
             >
-              <div>10%-100% / 7-365 Downside Protection</div>
-              <div
-                class="w-2 h-2 absolute right-0.5 -bottom-1 bg-primary-900 rotate-45 -z-10"
-              ></div>
-            </div>
-            <div class="pt-14 pb-2.25 2xl:pb-4 px-8 text-left font-ibm-bold">
-              <div class="text-11 2xl:text-xs 2xl:mt-2">
-                <div class="font-ibm-semi-bold flex">
-                  Syndication type
-                  <nftmx-help class="text-8"></nftmx-help>
+              <div class="flex items-center gap-4 pb-4 sm:pb-0">
+                <div
+                  class="w-18.5 h-18.5"
+                  :style="{
+                    background: 'url(' + '/images/components/drag-drop-logo.png' + ')',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundColor: 'black',
+                  }"
+                />
+                <div class="font-ibm-medium text-left">
+                  <div class="text-tertiary-400 text-xs">DVC #2536</div>
+                  <div class="font-ibm-bold text-white">OVR Land</div>
+                  <div class="text-xs">
+                    <span class="text-tertiary-400"> Created by </span>
+                    <span class="text-primary-900"> 77A9D2 </span>
+                  </div>
                 </div>
-                <div class="text-primary-900 font-ibm-medium leading-5 flex">
-                  {{ item.type === "AUCTION" ? "Auction" : "Fix Sale&nbsp;" }}
-                  <nftmx-price-common
-                    v-if="item.type === 'FIX_SALE'"
-                    :price="item.fixPrice"
-                  />
-                  <span
-                    v-if="item.type === 'FIX_SALE'"
-                    class="font-ibm text-tertiary-400 flex"
-                  >
-                    &nbsp;(
-                    <span class="font-sans">Ξ&nbsp;</span>
-                    {{ item.fixPrice }})
-                  </span>
+              </div>
+              <div class="pt-4 sm:pt-0 sm:px-4 grid grid-cols-2">
+                <div class="font-ibm-medium text-left text-xs">
+                  <div class="font-ibm-bold text-white">Total TVL</div>
+                  <div class="text-primary-900">$141565445656</div>
                 </div>
-                <div class="font-ibm-semi-bold flex pt-3">
-                  Total locked value
-                  <nftmx-help class="text-8"></nftmx-help>
+                <div class="font-ibm-medium text-left text-xs">
+                  <div class="font-ibm-bold text-white">Backers</div>
+                  <div class="text-primary-900">4201</div>
                 </div>
-                <div class="text-primary-900 font-ibm-medium leading-5 flex">
-                  <nftmx-price-common :price="item.lockedValue" />
-                  <span class="font-ibm text-tertiary-400 flex">
-                    &nbsp;(
-                    <span class="font-sans">Ξ&nbsp;</span>
-                    {{ "443.25" }})
-                  </span>
+                <div class="font-ibm-medium text-left text-xs">
+                  <div class="font-ibm-bold text-white">Total assets</div>
+                  <div class="text-primary-900">1589986</div>
+                </div>
+                <div class="font-ibm-medium text-left text-xs">
+                  <div class="font-ibm-bold text-white">Average ROI</div>
+                  <div class="text-primary-900">186.62%</div>
                 </div>
               </div>
             </div>
-
-            <div class="mt-0.75 mb-1.25 px-8">
-              <nftmx-progress-bar />
-            </div>
-
-            <div class="snap-center pt-1.5 2xl:pt-2 pb-2">
-              <div
-                class="2xl:pt-2 pb-2 font-ibm-medium text-11 2xl:text-xs text-center"
-              >
-                Current auction ends in
-              </div>
-              <div class="flex justify-center px-4">
-                <timer />
-              </div>
-            </div>
-            <nftmx-button
-              color="secondary"
-              label="JOIN SYNDICATION"
-              class="font-press w-full text-xs 2xl:text-sm py-4.25 2xl:py-5 absolute left-0 bottom-0"
-            ></nftmx-button>
+            <button
+              class="transition bg-black hover:bg-tertiary-300 text-secondary-900 font-press w-full flex items-center justify-center h-15 bottom-0 absolute text-sm"
+            >
+              BECOME A BACKER
+            </button>
           </div>
         </div>
       </div>

@@ -1,12 +1,100 @@
+<script setup>
+import { onMounted, ref } from "vue";
+import BundleImage from "@/core/components/basic/BundleImage.vue";
+import NftmxButton from "@/core/components/basic/NftmxButton.vue";
+import NftmxProgressBar from "@/core/components/basic/NftmxProgressBar.vue";
+import NftmxPriceCommon from "@/core/components/price/NftmxPriceCommon.vue";
+import Timer from "@/core/components/timer/Timer.vue";
+import NftmxHelp from "@/core/components/basic/NftmxHelp.vue";
+import { themeConfig } from "@/core/config";
+import { useStore } from "vuex";
+const syndications = [
+  {
+    img: [
+      "/images/nfts/img1.png",
+      "/images/nfts/img2.png",
+      "/images/nfts/img3.png",
+      "/images/nfts/img4.png",
+      "/images/nfts/img5.png",
+      "/images/nfts/img6.png",
+      "/images/nfts/img7.png",
+      "/images/nfts/img8.png",
+    ],
+    type: "AUCTION",
+    lockedValue: 1548325.56,
+  },
+  {
+    img: [
+      "/images/nfts/img1.png",
+      "/images/nfts/img2.png",
+      "/images/nfts/img3.png",
+      "/images/nfts/img4.png",
+      "/images/nfts/img5.png",
+      "/images/nfts/img6.png",
+      "/images/nfts/img7.png",
+      "/images/nfts/img8.png",
+    ],
+    type: "FIX_SALE",
+    fixPrice: 50000,
+    lockedValue: 1548325.56,
+  },
+  {
+    img: "/images/nfts/img3.png",
+    type: "FIX_SALE",
+    fixPrice: 50000,
+    lockedValue: 1548325.56,
+  },
+  {
+    img: "/images/nfts/img4.png",
+    type: "AUCTION",
+    lockedValue: 1548325.56,
+  },
+  {
+    img: "/images/nfts/img5.png",
+    type: "FIX_SALE",
+    fixPrice: 50000,
+    lockedValue: 1548325.56,
+  },
+  {
+    img: "/images/nfts/img6.png",
+    type: "AUCTION",
+    lockedValue: 1548325.56,
+  },
+];
+
+const props = defineProps({
+  carouselPlay: Boolean,
+});
+
+const store = useStore();
+const cards = ref(syndications);
+const innerStyles = ref({});
+const step = ref("");
+const transitioning = ref(false);
+const inner = ref(null);
+onMounted(() => {
+  console.log(inner.value.scrollWidth);
+});
+</script>
+
 <template>
-  <carousel
-    :items-to-show="itemsToShow"
-    :wrap-around="true"
-    :modelValue="modelValue"
-    :transition="2900"
-  >
-    <slide v-for="(item, index) in syndications" :key="index">
-      <div class="carousel__item" :style="{ marginLeft: marginLeft + 'em' }">
+  <div class="w-full overflow-hidden">
+    <div
+      :class="[
+        carouselPlay
+          ? store.state.app.windowWidth < themeConfig.xl2
+            ? 'piece'
+            : 'piecebig'
+          : '',
+        'relative w-full flex inner',
+      ]"
+      ref="inner"
+    >
+      <div
+        class="flex"
+        v-for="(item, index) in [...cards, ...cards]"
+        :key="index"
+      >
         <div
           class="transition duration-300 m-4 cursor-default hover:shadow-[0_0px_12px_0px_rgb(0_0_0_/_0.1),_0_0px_0px_0px_rgb(0_0_0_/_0.1);] hover:shadow-primary-900 w-max"
         >
@@ -69,77 +157,55 @@
           </div>
         </div>
       </div>
-    </slide>
-  </carousel>
+    </div>
+  </div>
 </template>
 
-<script setup>
-import { defineComponent, onMounted, ref, watchEffect } from "vue";
-import { Carousel, Navigation, Slide, Pagination } from "vue3-carousel";
-import Ribbon from "@/core/components/basic/Ribbon.vue";
-import NftmxButton from "@/core/components/basic/NftmxButton.vue";
-import NftmxProgressBar from "@/core/components/basic/NftmxProgressBar.vue";
-import "vue3-carousel/dist/carousel.css";
-import { themeConfig, syndications } from "@/core/config";
-import NftmxTrimString from "@/core/components/basic/NftmxTrimString.vue";
-import NftmxPriceCommon from "@/core/components/price/NftmxPriceCommon.vue";
-import Timer from "@/core/components/timer/Timer.vue";
-import NftmxHelp from "@/core/components/basic/NftmxHelp.vue";
-
-const props = defineProps({
-  carouselPlay: Boolean,
-});
-
-const windowSize = ref({
-  width: 0,
-  height: 0,
-});
-const itemsToShow = ref(3);
-const marginLeft = ref(-44);
-const modelValue = ref(0);
-
-let intervalCarouselPlay;
-
-function handleResize() {
-  windowSize.value.width = window.innerWidth;
-  windowSize.value.height = window.innerHeight;
-  if (windowSize.value.width >= 1920) {
-    itemsToShow.value = 2.7;
-  } else if (windowSize.value.width < 640) {
-    itemsToShow.value = 1.01;
-    marginLeft.value = 0;
-  } else {
-    const base = windowSize.value.width >= 1190 ? 2 : 1;
-    const adjust =
-      windowSize.value.width >= 1536
-        ? 1410
-        : windowSize.value.width >= 1190
-        ? 1192
-        : 600;
-    const adjustLeft =
-      windowSize.value.width >= 1536
-        ? -44
-        : windowSize.value.width >= 1190
-        ? -38
-        : -37;
-    const adjustDivide = windowSize.value.width >= 1190 ? 660 : 566;
-    itemsToShow.value = (windowSize.value.width - adjust) / adjustDivide + base;
-    if (itemsToShow.value > 2) {
-      marginLeft.value = adjustLeft;
-    } else {
-      marginLeft.value = 0;
-    }
+<style scoped>
+.inner {
+  transition: transform 5s;
+  transition-timing-function: linear;
+}
+.card {
+  width: 700px;
+  margin-right: 10px;
+  /* display: inline-flex; */
+  /* optional */
+  color: white;
+  border-radius: 4px;
+  align-items: center;
+  justify-content: center;
+}
+/* optional */
+button {
+  margin-right: 5px;
+  margin-top: 10px;
+}
+.w-fill {
+  width: calc(100% + 4px);
+}
+.piece {
+  animation: carouselmove 60s infinite;
+  animation-timing-function: linear;
+}
+@keyframes carouselmove {
+  from {
+    left: -3588px;
+  }
+  to {
+    left: 0;
   }
 }
-handleResize();
-window.addEventListener("resize", handleResize);
-watchEffect(() => {
-  if (props.carouselPlay) {
-    intervalCarouselPlay = setInterval(() => {
-      modelValue.value--;
-    }, 3000);
-  } else {
-    clearInterval(intervalCarouselPlay);
+.piecebig {
+  animation: bigcarouselmove 60s infinite;
+  animation-timing-function: linear;
+}
+@keyframes bigcarouselmove {
+  from {
+    left: -4153px;
   }
-});
-</script>
+  to {
+    left: 0;
+  }
+}
+</style>
