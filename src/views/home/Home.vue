@@ -131,7 +131,7 @@ const setCollections = (value) => {
   background: url("/images/landing/hero-nfts.png");
   background-repeat: repeat;
   animation: animatedBackground 500s linear infinite;
-  background-size: contain;
+  background-size: 100% 100%;
 }
 @keyframes animatedBackground {
   from {
@@ -147,15 +147,15 @@ const setCollections = (value) => {
   background: url("/images/landing/hero-nfts.png");
   background-repeat: repeat;
   animation: animatedBackground1 500s linear infinite;
-  background-size: contain;
+  background-size: 100% 100%;
 }
 @keyframes animatedBackground1 {
   from {
-    background-position: -100px 0;
+    background-position: -1000px 0;
   }
   /*use negative width if you want it to flow right to left else and positive for left to right*/
   to {
-    background-position: -10000px 0;
+    background-position: -11000px 0;
   }
 }
 </style>
