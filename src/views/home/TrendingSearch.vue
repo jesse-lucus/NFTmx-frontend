@@ -24,6 +24,7 @@ const emit = defineEmits([
   "filter-contract",
 ]);
 
+const searchText = ref("");
 const lands = ref(4869987);
 const collectionName = useDebouncedRef("", 1000);
 const filteredCollections = ref([]);
@@ -80,8 +81,9 @@ watchEffect(() => {
       >
         <div class="flex flex-1 w-full min-w-max items-center">
           <nftmx-search-input
-            v-model="filterActive"
+            v-model="searchText"
             @handle-filter="clickFilter"
+            :filterActive="filterActive"
             navbar
             class="w-full h-full font-ibm-medium text-sm"
             placeholder="Search items, collections, and accounts"

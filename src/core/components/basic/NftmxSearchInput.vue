@@ -6,17 +6,18 @@ import { computed } from 'vue';
 const props = defineProps({
     navbar: Boolean,
     placeholder: String,
+    filterActive: Boolean,
     modelValue: Boolean
 })
 
-const emit = defineEmits(['update:modelValue']);
-const filterActive = computed({
+const emit = defineEmits(['update:modelValue', 'handle-filter']);
+const searchText = computed({
     get: () => props.modelValue,
     set: value => emit('update:modelValue', value)
 })
 
 function clickFilter() {
-    filterActive.value = !filterActive.value;
+    emit('handle-filter')
 }
 
 function onKeyDown(evt) {
