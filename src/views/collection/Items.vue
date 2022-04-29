@@ -109,7 +109,7 @@ watchEffect(() => {
         </div>
       </div>
       <div class="h-12.5 w-68.25 z-10">
-        <basic-dropdown title="Single items">
+        <basic-dropdown title="Single items" class="bg-tertiary-800">
           <template v-slot:content>
             <div
               class="font-ibm-medium text-white px-3.5 flex flex-col gap-1"
@@ -118,7 +118,7 @@ watchEffect(() => {
         </basic-dropdown>
       </div>
       <div class="h-12.5 w-68.25 z-10">
-        <basic-dropdown title="Price: low to high">
+        <basic-dropdown title="Price: low to high" class="bg-tertiary-800">
           <template v-slot:content>
             <div
               class="font-ibm-medium text-white px-3.5 flex flex-col gap-1"

@@ -100,7 +100,7 @@ const handleVote = () => {
     </div>
 
     <div
-        class="grid grid-cols-1 sm:grid-cols-2 bg-tertiary-800 border border-black font-ibm-bold p-4 sm:p-7 gap-4"
+        class="grid grid-cols-1 sm:grid-cols-2 items-center bg-tertiary-800 border border-black font-ibm-bold p-4 sm:p-7 gap-4"
     >
         <div class="items-center">
             <div class="flex flex-col items-center sm:items-start">
@@ -109,8 +109,7 @@ const handleVote = () => {
             </div>
         </div>
 
-        <div class="items-centers -mt-px mb-px">
-            <nftmx-select-network class="font-ibm-bold w-full text-sm mb-2" color="black" big></nftmx-select-network>
+        <div class="-mt-px mb-px">
             <nftmx-button
                 color="primary"
                 label="BUY NOW"
