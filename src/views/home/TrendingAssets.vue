@@ -46,11 +46,12 @@ const loadMoreCollection = () => {
 </script>
 
 <template>
-  <div class="flex-1 sm:pl-5 pb-3.25" v-if="contract">
+  <div class="flex-1 sm:pl-5 pb-20" v-if="contract">
     <filter-assets
       :ledgerPanelVisible="ledgerPanelVisible"
       title="Explore"
       :contract="contract"
+      :last="true"
     />
   </div>
   <div class="flex-1 sm:pl-5 pb-20" v-if="!contract">
