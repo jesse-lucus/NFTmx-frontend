@@ -23,7 +23,6 @@ const filterContract = ref("");
 const loading = ref(true);
 const allAssets = ref({ assets: [], next: "", prev: "" });
 const assets = ref([]);
-const offset = ref(0);
 const limit = ref(2);
 const more = computed(
   () =>
@@ -36,6 +35,7 @@ const retrieveAssets = (init) => {
     .getEthNfts({
       contract: filterContract.value,
       cursor: allAssets.value.next,
+      limit: 20,
     })
     .then((res) => {
       loading.value = false;
@@ -57,10 +57,10 @@ onMounted(() => {
 const loadMoreAssets = (init) => {
   const missed = limit.value - (assets.value.length % limit.value);
   const sliceLimit = init ? limit.value : limit.value * 3 + missed;
+  const nextStartPoint = assets.value.length;
   assets.value = assets.value.concat(
-    allAssets.value.assets.slice(offset.value, offset.value + sliceLimit)
+    allAssets.value.assets.slice(nextStartPoint, nextStartPoint + sliceLimit)
   );
-  offset.value += sliceLimit;
   if (!init && allAssets.value.next) {
     retrieveAssets();
   }
@@ -97,7 +97,6 @@ watchEffect(() => {
     filterContract.value = props.contract;
     allAssets.value = { assets: [], next: "", prev: "" };
     assets.value = [];
-    offset.value = 0;
     retrieveAssets(true);
   }
 });
@@ -105,7 +104,7 @@ watchEffect(() => {
 
 <template>
   <div class="-mx-4">
-    <accordion :border="false" :bIcon="true">
+    <accordion :border="false" :bIcon="true" :updatePeried="1000">
       <template v-slot:caption>
         <div class="flex items-center w-full">
           <div class="flex-1 text-lg font-press pt-2.75 pb-3 mr-4">
