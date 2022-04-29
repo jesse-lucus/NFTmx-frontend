@@ -36,7 +36,7 @@ const props = defineProps({
           :images="
             images.splice(
               0,
-              Math.round(Math.random() * (props.images.length - 2)) + 1
+              1
             )
           "
         ></bundle-image>

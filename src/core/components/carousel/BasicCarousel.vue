@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watchEffect } from "vue";
 import BundleImage from "@/core/components/basic/BundleImage.vue";
 import NftmxButton from "@/core/components/basic/NftmxButton.vue";
 import NftmxProgressBar from "@/core/components/basic/NftmxProgressBar.vue";
@@ -72,22 +72,35 @@ const innerStyles = ref({});
 const step = ref("");
 const transitioning = ref(false);
 const inner = ref(null);
+const left = ref(0);
+const anim = ref(null);
 onMounted(() => {
   console.log(inner.value.scrollWidth);
+});
+watchEffect(() => {
+  console.log(anim.value, "===", props.carouselPlay);
+  if (!anim.value & props.carouselPlay) {
+    console.log("start anim");
+    anim.value = setInterval(() => {
+      console.log("===", left.value);
+      left.value = left.value - 1;
+      if (left.value < -inner.value.scrollWidth / 2) {
+        left.value = 0;
+      }
+    }, 10);
+  } else if (anim.value && !props.carouselPlay) {
+    console.log("stop anim");
+    clearInterval(anim.value);
+    anim.value = null;
+  }
 });
 </script>
 
 <template>
   <div class="w-full overflow-hidden">
     <div
-      :class="[
-        carouselPlay
-          ? store.state.app.windowWidth < themeConfig.xl2
-            ? 'piece'
-            : 'piecebig'
-          : '',
-        'relative w-full flex inner',
-      ]"
+      :class="['relative w-full flex inner']"
+      :style="{ left: left + 'px' }"
       ref="inner"
     >
       <div
@@ -114,7 +127,8 @@ onMounted(() => {
                 <div
                   class="w-18.5 h-18.5"
                   :style="{
-                    background: 'url(' + '/images/components/drag-drop-logo.png' + ')',
+                    background:
+                      'url(' + '/images/components/drag-drop-logo.png' + ')',
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
