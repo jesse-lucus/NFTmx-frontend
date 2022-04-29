@@ -19,6 +19,7 @@ import marketService from "@/core/services/market.service";
 import authService from "@/core/services/auth.service";
 import OrderInfo from "@/core/components/asset/OrderInfo.vue";
 import AssetLedger from "@/core/components/asset/AssetLedger.vue";
+import OffersReceived from "@/core/components/asset/OffersReceived.vue";
 
 const store = useStore();
 const router = useRouter();
@@ -77,6 +78,9 @@ const handleModal = (value) => {
           />
         </div>
       </div>
+    </div>
+    <div class="mt-4">
+      <offers-received />
     </div>
     <div class="mt-4 mb-16">
       <asset-ledger />

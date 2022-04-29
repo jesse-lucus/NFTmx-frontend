@@ -45,6 +45,7 @@ import {
   faArrowRight,
   faArrowDown,
   faArrowUp,
+  faTrashAlt
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faFacebookF,
@@ -93,7 +94,8 @@ library.add(
   faArrowLeft,
   faArrowRight,
   faArrowDown,
-  faArrowUp
+  faArrowUp,
+  faTrashAlt
 );
 
 const options = {
