@@ -45,7 +45,7 @@ import {
   faArrowRight,
   faArrowDown,
   faArrowUp,
-  faTrashAlt
+  faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faFacebookF,

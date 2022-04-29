@@ -58,7 +58,7 @@ marketService.getOrder(orderId).then((res) => {
         <item-action :order="order" :nft="nft" :nftCreator="nftCreator" />
       </div>
     </div>
-    <div class="mb-10">
+    <div>
       <asset-history />
     </div>
     <div class="mt-4">

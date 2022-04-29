@@ -11,6 +11,8 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['update:modelValue', 'handle-filter']);
+
+const store = useStore();
 const searchText = computed({
     get: () => props.modelValue,
     set: value => emit('update:modelValue', value)
@@ -26,8 +28,6 @@ function onKeyDown(evt) {
         return
     }
 }
-const store = useStore();
-
 </script>
 
 <template>

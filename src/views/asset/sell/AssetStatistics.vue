@@ -2,13 +2,10 @@
 import { ref } from "vue";
 import NftmxButton from "@/core/components/basic/NftmxButton.vue";
 import AssetHistory from "@/core/components/asset/AssetHistory.vue";
-import { useStore } from "vuex";
 
 const props = defineProps({
   modelValue: Boolean,
 });
-
-const store = useStore();
 
 const emit = defineEmits(["handle-modal"]);
 

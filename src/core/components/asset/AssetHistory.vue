@@ -22,11 +22,11 @@ const items = [
       <div class="flex items-center relative">
         <div class="text-lg font-ibm-bold pt-4 pb-3.5 mr-24">History</div>
         <div
-          @click.stop
           v-if="store.state.app.windowWidth >= themeConfig.sm"
           class="relative h-12 w-full mr-4"
         >
           <basic-dropdown
+            @click.stop
             title="All time"
             small
             class="bg-black absolute w-full max-w-lg"
