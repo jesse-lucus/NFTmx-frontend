@@ -7,7 +7,7 @@ import HeadButton from "./components/HeadButton.vue";
     class="relative z-10 bg-no-repeat bg-cover bg-right font-press sm:leading-relaxed xl:leading-relaxed text-white px-5.5 sm:px-10 md:px-16 lg:px-22 h-landing"
   >
     <div
-      class="h-full w-full absolute left-0 -z-10"
+      class="h-full w-full absolute left-0 -z-10 overflow-hidden"
       :style="{
         background: `url('/images/landing/hero-image-bg-1920.png')`,
         backgroundPosition: 'center',
@@ -16,7 +16,7 @@ import HeadButton from "./components/HeadButton.vue";
       }"
     >
       <div
-        class="w-full h-full absolute right-0 overflow-hidden flex items-center"
+        class="w-full h-full absolute -right-80 overflow-hidden flex items-center"
       >
         <div class="h-1/2 w-full animation absolute"></div>
         <div class="h-1/2 w-full animation1 absolute"></div>
@@ -45,7 +45,7 @@ import HeadButton from "./components/HeadButton.vue";
   perspective: 100px;
 }
 .panel {
-  transform: perspective(15px) rotateY(-3deg);
+  transform: perspective(20px) rotateY(-3deg);
   background: linear-gradient(
     to right,
     rgba(44, 50, 51, 0.2),
@@ -53,7 +53,7 @@ import HeadButton from "./components/HeadButton.vue";
   );
 }
 .animation {
-  transform: perspective(15px) rotateY(-3deg);
+  transform: perspective(20px) rotateY(-3deg);
   background: url("/images/landing/hero-nfts.png");
   background-repeat: repeat;
   animation: animatedBackground 500s linear infinite;
@@ -69,7 +69,7 @@ import HeadButton from "./components/HeadButton.vue";
   }
 }
 .animation1 {
-  transform: perspective(15px) rotateY(-3deg);
+  transform: perspective(20px) rotateY(-3deg);
   background: url("/images/landing/hero-nfts.png");
   background-repeat: repeat;
   animation: animatedBackground1 500s linear infinite;
