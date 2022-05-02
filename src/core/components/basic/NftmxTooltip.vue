@@ -1,40 +1,61 @@
-<template>
-  <div class="tooltip-box" @mouseover="tooltip = true" @mouseout="tooltip = false">
-    <slot />
-    <div v-if="tooltip"
-      class="tooltip absolute bg-black text-white font-ibm-light leading-5 z-50 text-11 shadow-[0_-2px_15px_-2px_rgb(0_0_0_/_0.1),_0_2px_6px_-4px_rgb(0_0_0_/_0.1);] shadow-primary-900 p-4 w-96 right-1 top-3"
-    >
-      {{text}}
-    </div>
-  </div>
-</template>
-
 <script setup>
-import { ref } from 'vue'
+import { computed, onMounted, ref } from "vue";
+import { useStore } from "vuex";
 
 defineProps({
   text: {
     type: String,
-    required: true
+    required: true,
+  },
+});
+
+const store = useStore();
+const windowWidth = computed(() => store.state.app.windowWidth);
+const tooltip = ref(false);
+const tooltipBox = ref(null);
+const tooltipRef = ref(null);
+const tooltipStyle = ref({});
+
+onMounted(() => {
+  let top = -tooltipBox.value.offsetHeight - tooltipRef.value.offsetHeight;
+  let left = 0;
+  let tooltipRefPosition = tooltipRef.value.getBoundingClientRect();
+  let tooltipBoxPosition = tooltipBox.value.getBoundingClientRect();
+  if (tooltipBoxPosition.top < tooltipRefPosition.height + 100) {
+    top = tooltipBox.value.offsetHeight;
   }
-})
-
-const tooltip = ref(false)
-
+  if (
+    tooltipBoxPosition.left + tooltipRefPosition.width + 100 >
+    windowWidth.value
+  ) {
+    left = -tooltipRefPosition.width;
+  }
+  tooltipStyle.value = {
+    top: top + "px",
+    left: left + "px",
+  };
+});
 </script>
 
-<style scoped>
-.tooltip-box { 
-  position: relative;
-  display: inline-block;
-}
-
-.tooltip-box:hover .tooltip{
-  opacity: 1;
-}
-
-.tooltip { 
-  opacity: 0;
-}
-
-</style>
+<template>
+  <div class="relative">
+    <div
+      class="inline-block w-min h-min cursor-pointer"
+      ref="tooltipBox"
+      @mouseover="tooltip = true"
+      @mouseout="tooltip = false"
+    >
+      <slot />
+    </div>
+    <div
+      ref="tooltipRef"
+      :class="[
+        tooltip ? 'opacity-100' : 'opacity-0',
+        'absolute transition bg-black text-white font-ibm-light text-left z-50 text-11 shadow-[0_-2px_15px_-2px_rgb(0_0_0_/_0.1),_0_2px_6px_-4px_rgb(0_0_0_/_0.1);] shadow-primary-900 py-1.75 px-4 w-64 rounded',
+      ]"
+      :style="tooltipStyle"
+    >
+      {{ text }}
+    </div>
+  </div>
+</template>
