@@ -6,9 +6,10 @@ import openseaService from "@/core/services/opensea.service";
 import SectionButton from "@/core/components/buttons/SectionButton.vue";
 import FilterAssets from "./FilterAssets.vue";
 
-defineProps({
+const props = defineProps({
   contract: String,
   ledgerPanelVisible: Boolean,
+  filterOption: Object,
 });
 
 const allCollections = ref([
@@ -52,6 +53,7 @@ const loadMoreCollection = () => {
       title="Explore"
       :contract="contract"
       :last="true"
+      :filterOption="filterOption"
     />
   </div>
   <div class="flex-1 sm:pl-5 pb-20" v-if="!contract">

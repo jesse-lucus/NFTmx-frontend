@@ -102,3 +102,13 @@ export const defaultPagination = {
   page: 1,
   limit: 20,
 };
+
+export const filterStatus = {
+  BUY_NOW: 'Buy Now',
+  ON_AUCTION: 'On Auction',
+  HAS_OFFERS: 'Has Offers',
+  HAS_NO_OFFERS: 'Has No Offers',
+  RECENTLY_SOLD: 'Recently Sold',
+  RECENTLY_CANCELED: 'Recently Canceled',
+  ENDING_SOON: 'Ending Soon'
+}

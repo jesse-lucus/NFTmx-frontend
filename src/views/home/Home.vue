@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, ref, watchEffect } from "vue";
 import { useStore } from "vuex";
 import BodyContainer from "@/core/container/BodyContainer.vue";
 import NftmxDivider from "@/core/components/basic/NftmxDivider.vue";
@@ -21,6 +21,17 @@ const contract = ref("");
 const ledgerPanelVisible = ref(true);
 const carouselPlay = ref(false);
 const collections = ref([]);
+const filterOption = ref({
+  status: [],
+  price: {
+    min: "",
+    max: "",
+  },
+  category: "",
+  collections: [],
+  chain: "ETH",
+  sortBy: "",
+});
 
 const clickFilter = () => {
   filterActive.value = !filterActive.value;
@@ -36,6 +47,9 @@ const toggleLedgerPanel = () => {
 };
 const setCollections = (value) => {
   collections.value = value;
+};
+const filterAssets = (value) => {
+  filterOption.value = value;
 };
 </script>
 
@@ -94,6 +108,8 @@ const setCollections = (value) => {
       @click-filter-by="clickFilterBy"
       @filter-contract="filterContract"
       :collections="collections"
+      :filterOption="filterOption"
+      @filter-assets="filterAssets"
     />
     <div
       class="relative sm:flex justify-center px-4 sm:px-10 pt-6.5 pb-15 lg:px-22"
@@ -112,88 +128,8 @@ const setCollections = (value) => {
         :ledgerPanelVisible="ledgerPanelVisible"
         v-if="filterBy === 'lands'"
         :contract="contract"
+        :filterOption="filterOption"
       />
     </div>
   </body-container>
 </template>
-
-<style scoped>
-.perspective {
-  perspective: 100px;
-}
-.panel {
-  transform: perspective(22px) rotateY(-3deg);
-  background: linear-gradient(
-    to right,
-    rgb(0, 0, 0, 0.8),
-    rgba(36, 36, 36, 0.1) 50%,
-    rgba(255, 255, 255, 0)
-  );
-}
-.animation {
-  background: url("/images/landing/hero-nfts.png");
-  background-repeat: repeat;
-  background-size: 100% 100%;
-}
-.anim1 {
-  transform: perspective(15px) rotateY(-3deg) translate3d(0px, -100px, -1px);
-  animation: animatedBackground1 300s linear infinite;
-}
-@keyframes animatedBackground1 {
-  from {
-    background-position: 0 0;
-  }
-  /*use negative width if you want it to flow right to left else and positive for left to right*/
-  to {
-    background-position: -10000px 0;
-  }
-}
-.anim2 {
-  transform: perspective(17px) rotateY(-3deg) translate3d(0px, 80px, -2px);
-  animation: animatedBackground2 300s linear infinite;
-}
-@keyframes animatedBackground2 {
-  from {
-    background-position: -300px 0px;
-  }
-  to {
-    background-position: -10300px 0px;
-  }
-}
-.anim3 {
-  transform: perspective(19px) rotateY(-3deg) translate3d(0px, -70px, -3px);
-  animation: animatedBackground3 300s linear infinite;
-}
-@keyframes animatedBackground3 {
-  from {
-    background-position: -700px 0px;
-  }
-  to {
-    background-position: -10700px 0px;
-  }
-}
-.anim4 {
-  transform: perspective(21px) rotateY(-3deg) translate3d(0px, 40px, -4px);
-  animation: animatedBackground4 300s linear infinite;
-}
-@keyframes animatedBackground4 {
-  from {
-    background-position: -1200px 0px;
-  }
-  to {
-    background-position: -11200px 0px;
-  }
-}
-.anim5 {
-  transform: perspective(22px) rotateY(-3deg);
-  animation: animatedBackground5 300s linear infinite;
-}
-@keyframes animatedBackground5 {
-  from {
-    background-position: -1500px 0px;
-  }
-  to {
-    background-position: -11500px 0px;
-  }
-}
-</style>

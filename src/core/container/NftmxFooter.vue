@@ -55,7 +55,7 @@ watch(windowWidth, (val) => {
             </div>
             <div class="text-tertiary-400 font-ibm text-xm">
               Build for FREE your own NFT.mx under a new brand and enjoy from
-              sale fees
+              sale fees.
             </div>
           </div>
           <div class="flex flex-col items-center px-1">
@@ -67,7 +67,7 @@ watch(windowWidth, (val) => {
               Display us
             </div>
             <div class="text-tertiary-400 font-ibm text-xm">
-              Use our API to display NFT on you website and enjoy from sale fees
+              Use our API to display NFT on you website and enjoy from sale fees.
             </div>
           </div>
           <div class="flex flex-col items-center px-1">
@@ -79,7 +79,7 @@ watch(windowWidth, (val) => {
               Become an affiliate
             </div>
             <div class="text-tertiary-400 font-ibm text-xm">
-              Drive traffic to NFT.mx and enjoy from sale fees
+              Drive traffic to NFT.mx and enjoy from sale fees.
             </div>
           </div>
         </div>

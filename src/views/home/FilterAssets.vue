@@ -14,6 +14,7 @@ const props = defineProps({
   contract: { type: String, default: "" },
   ledgerPanelVisible: Boolean,
   last: Boolean,
+  filterOption: Object,
 });
 
 const store = useStore();
@@ -99,6 +100,11 @@ watchEffect(() => {
     allAssets.value = { assets: [], next: "", prev: "" };
     assets.value = [];
     retrieveAssets(true);
+  }
+});
+watchEffect(() => {
+  if (props.filterOption) {
+    console.log("==========", props.filterOption.status);
   }
 });
 </script>

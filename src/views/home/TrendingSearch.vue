@@ -12,16 +12,20 @@ import NftmxInput from "@/core/components/basic/NftmxInput.vue";
 import FilterItem from "./components/FilterItem.vue";
 import useDebouncedRef from "@/core/utils/useDebouncedRef.js";
 import marketService from "@/core/services/market.service";
+import { filterStatus } from "@/core/config";
+import { findAndRemove } from "@/core/utils";
 
 const props = defineProps({
   filterBy: String,
   filterActive: Boolean,
   collections: Array,
+  filterOption: Object,
 });
 const emit = defineEmits([
   "click-filter",
   "click-filter-by",
   "filter-contract",
+  "filter-assets",
 ]);
 
 const searchText = ref("");
@@ -37,6 +41,17 @@ const clickFilterBy = (value) => {
 };
 const filterCollection = (address) => {
   emit("filter-contract", address);
+};
+const filterByStatus = (option) => {
+  const tempOption = props.filterOption;
+  let options = JSON.parse(JSON.stringify(tempOption));
+  const index = options.status.indexOf(option);
+  if (index > -1) {
+    options.status.splice(index, 1);
+  } else {
+    options.status.push(option);
+  }
+  emit("filter-assets", options);
 };
 
 watchEffect(() => {
@@ -107,13 +122,13 @@ onMounted(() => {
                   <div
                     class="grid grid-cols-2 pt-2 gap-2.5 justify-between text-xs pb-6 h-64"
                   >
-                    <status-button title="Buy Now" />
-                    <status-button title="On Auction" />
-                    <status-button title="Has Offers" />
-                    <status-button title="Has No Offers" />
-                    <status-button title="Recently Sold" />
-                    <status-button title="Recently Canceled" />
-                    <status-button title="Ending Soon" />
+                    <status-button
+                      v-for="(value, key) in filterStatus"
+                      :key="key"
+                      :active="filterOption.status.includes(key)"
+                      :title="value"
+                      @click="filterByStatus(key)"
+                    />
                   </div>
                 </template>
               </search-accordion>

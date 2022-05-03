@@ -5,11 +5,9 @@ import SectionButton from "./components/SectionButton.vue";
 
 <template>
   <landing-section black>
-    <div class="grid grid-cols-1 md:grid-cols-2 items-center">
+    <div class="grid grid-cols-1 md:grid-cols-2 items-center 2xl:px-20">
       <div class>
-        <div
-          class="font-press text-white text-xl lg:text-2xl 2xl:text-3xl"
-        >
+        <div class="font-press text-white text-xl lg:text-2xl 2xl:text-3xl">
           Decentralized Venture Capital
         </div>
         <div
