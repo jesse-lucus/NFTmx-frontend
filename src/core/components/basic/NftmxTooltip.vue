@@ -30,7 +30,6 @@ onMounted(() => {
   ) {
     left = -tooltipRefPosition.width;
   }
-  console.log("===sssss====", top, left);
   tooltipStyle.value = {
     top: top + "px",
     left: left + "px",

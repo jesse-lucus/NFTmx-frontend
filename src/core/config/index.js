@@ -91,62 +91,6 @@ export const TokenType = {
   SOL: "SOL",
 };
 
-export const syndications = [
-  {
-    img: [
-      "/images/nfts/img1.png",
-      "/images/nfts/img2.png",
-      "/images/nfts/img3.png",
-      "/images/nfts/img4.png",
-      "/images/nfts/img5.png",
-      "/images/nfts/img6.png",
-      "/images/nfts/img7.png",
-      "/images/nfts/img8.png",
-    ],
-    type: "AUCTION",
-    lockedValue: 1548325.56,
-  },
-  {
-    img: "/images/nfts/img2.png",
-    type: "FIX_SALE",
-    fixPrice: 50000,
-    lockedValue: 1548325.56,
-  },
-  {
-    img: "/images/nfts/img3.png",
-    type: "FIX_SALE",
-    fixPrice: 50000,
-    lockedValue: 1548325.56,
-  },
-  {
-    img: "/images/nfts/img4.png",
-    type: "AUCTION",
-    lockedValue: 1548325.56,
-  },
-  {
-    img: "/images/nfts/img5.png",
-    type: "FIX_SALE",
-    fixPrice: 50000,
-    lockedValue: 1548325.56,
-  },
-  {
-    img: "/images/nfts/img6.png",
-    type: "AUCTION",
-    lockedValue: 1548325.56,
-  },
-  {
-    img: "/images/nfts/img7.png",
-    type: "AUCTION",
-    lockedValue: 1548325.56,
-  },
-  {
-    img: "/images/nfts/img8.png",
-    type: "FIX_SALE",
-    fixPrice: 50000,
-    lockedValue: 1548325.56,
-  },
-];
-
 export const assetDetailTabs = [
   "Details",
   "About the creator",
@@ -154,50 +98,7 @@ export const assetDetailTabs = [
   "Downside Protection",
 ];
 
-export const popularSyndications = [
-  {
-    name: "Mutant Ape Yacht Club",
-    rate: 31.28,
-    price: 50000,
-  },
-  {
-    name: "Mutant Ape Yacht Club",
-    rate: -31.28,
-    price: 50000,
-  },
-  {
-    name: "Mutant Ape Yacht Club",
-    rate: 31.28,
-    price: 50000,
-  },
-  {
-    name: "Mutant Ape Yacht Club",
-    rate: 31.28,
-    price: 50000,
-  },
-  {
-    name: "Mutant Ape Yacht Club",
-    rate: -31.28,
-    price: 50000,
-  },
-  {
-    name: "Mutant Ape Yacht Club",
-    rate: -31.28,
-    price: 50000,
-  },
-  {
-    name: "Mutant Ape Yacht Club",
-    rate: 31.28,
-    price: 50000,
-  },
-  {
-    name: "Mutant Ape Yacht Club",
-    rate: 31.28,
-    price: 50000,
-  },
-];
-
 export const defaultPagination = {
   page: 1,
-  limit: 10,
+  limit: 20,
 };

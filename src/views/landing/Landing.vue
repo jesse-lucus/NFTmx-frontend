@@ -5,8 +5,6 @@ import LandingHead from './LandingHead.vue';
 import LandingDescription from './LandingDescription.vue';
 import LandingGuide from './LandingGuide.vue';
 import LandingTopVcs from './LandingTopVcs.vue';
-import LandingPopularSyndications from './LandingPopularSyndications.vue';
-import LandingCategories from './LandingCategories.vue';
 import LandingSyndications from './LandingSyndications.vue';
 import LandingFlip from './LandingFlip.vue';
 import LandingVcs from './LandingVcs.vue';

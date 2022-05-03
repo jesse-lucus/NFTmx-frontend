@@ -7,6 +7,7 @@ import marketService from "@/core/services/market.service";
 import OpenseaAssetCard from "@/core/components/cards/OpenseaAssetCard.vue";
 import { themeConfig } from "@/core/config";
 import NftmxDivider from "@/core/components/basic/NftmxDivider.vue";
+import { defaultPagination } from "@/core/config";
 
 const props = defineProps({
   title: String,
@@ -35,7 +36,7 @@ const retrieveAssets = (init) => {
     .getEthNfts({
       contract: filterContract.value,
       cursor: allAssets.value.next,
-      limit: 20,
+      limit: defaultPagination.limit,
     })
     .then((res) => {
       loading.value = false;
