@@ -17,9 +17,11 @@ import HeadButton from "./components/HeadButton.vue";
       <div
         class="w-full h-full absolute -right-80 overflow-hidden flex items-center"
       >
-        <div class="h-1/2 w-full animation absolute"></div>
-        <div class="h-1/2 w-full animation1 absolute"></div>
-        <div class="h-1/2 w-full animation2 absolute"></div>
+        <div class="h-1/2 w-full animation anim1 absolute"></div>
+        <div class="h-1/2 w-full animation anim2 absolute"></div>
+        <div class="h-1/2 w-full animation anim3 absolute"></div>
+        <div class="h-1/2 w-full animation anim4 absolute"></div>
+        <div class="h-1/2 w-full animation anim5 absolute"></div>
         <div class="h-1/2 w-full panel absolute"></div>
       </div>
     </div>
@@ -45,7 +47,7 @@ import HeadButton from "./components/HeadButton.vue";
   perspective: 100px;
 }
 .panel {
-  transform: perspective(20px) rotateY(-3deg);
+  transform: perspective(22px) rotateY(-3deg);
   background: linear-gradient(
     to right,
     rgb(0, 0, 0, 0.8),
@@ -54,13 +56,15 @@ import HeadButton from "./components/HeadButton.vue";
   );
 }
 .animation {
-  transform: perspective(20px) rotateY(-3deg);
   background: url("/images/landing/hero-nfts.png");
   background-repeat: repeat;
-  animation: animatedBackground 300s linear infinite;
   background-size: 100% 100%;
 }
-@keyframes animatedBackground {
+.anim1 {
+  transform: perspective(15px) rotateY(-3deg) translate3d(0px, -100px, -1px);
+  animation: animatedBackground1 300s linear infinite;
+}
+@keyframes animatedBackground1 {
   from {
     background-position: 0 0;
   }
@@ -69,36 +73,52 @@ import HeadButton from "./components/HeadButton.vue";
     background-position: -10000px 0;
   }
 }
-.animation1 {
-  transform: perspective(20px) rotateY(-3deg);
-  background: url("/images/landing/hero-nfts.png");
-  background-repeat: repeat;
-  animation: animatedBackground1 300s linear infinite;
-  background-size: 100% 100%;
+.anim2 {
+  transform: perspective(17px) rotateY(-3deg) translate3d(0px, 80px, -2px);
+  animation: animatedBackground2 300s linear infinite;
 }
-@keyframes animatedBackground1 {
+@keyframes animatedBackground2 {
   from {
     background-position: -300px 0px;
   }
-  /*use negative width if you want it to flow right to left else and positive for left to right*/
   to {
     background-position: -10300px 0px;
   }
 }
-.animation2 {
-  transform: perspective(20px) rotateY(-3deg);
-  background: url("/images/landing/hero-nfts.png");
-  background-repeat: repeat;
-  animation: animatedBackground2 300s linear infinite;
-  background-size: 100% 100%;
+.anim3 {
+  transform: perspective(19px) rotateY(-3deg) translate3d(0px, -80px, -3px);
+  animation: animatedBackground3 300s linear infinite;
 }
-@keyframes animatedBackground2 {
+@keyframes animatedBackground3 {
   from {
-    background-position: -500px 0px;
+    background-position: -700px 0px;
   }
-  /*use negative width if you want it to flow right to left else and positive for left to right*/
   to {
-    background-position: -10600px 0px;
+    background-position: -10700px 0px;
+  }
+}
+.anim4 {
+  transform: perspective(21px) rotateY(-3deg) translate3d(0px, 40px, -4px);
+  animation: animatedBackground4 300s linear infinite;
+}
+@keyframes animatedBackground4 {
+  from {
+    background-position: -1200px 0px;
+  }
+  to {
+    background-position: -11200px 0px;
+  }
+}
+.anim5 {
+  transform: perspective(22px) rotateY(-3deg);
+  animation: animatedBackground5 300s linear infinite;
+}
+@keyframes animatedBackground5 {
+  from {
+    background-position: -1500px 0px;
+  }
+  to {
+    background-position: -11500px 0px;
   }
 }
 </style>
