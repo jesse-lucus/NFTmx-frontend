@@ -6,7 +6,7 @@ import LandingSection from "./containers/LandingSection.vue";
   <landing-section>
     <div class="grid md:grid-cols-2 items-center">
       <div>
-        <img src="/images/landing/flip-others-nft.png" />
+        <img v-lazy="'/images/landing/flip-others-nft.png'" />
       </div>
       <div class="2xl:px-8 mt-10 md:mt-0">
         <div

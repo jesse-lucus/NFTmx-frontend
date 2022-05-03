@@ -41,6 +41,7 @@
     "vue3-carousel": "^0.1.35",
     "vue3-charts": "^1.1.27",
     "vue3-clipboard": "^1.0.0",
+    "vue3-lazyload": "^0.2.5-beta",
     "vuex": "^4.0.2",
     "web3": "^1.6.1"
   },

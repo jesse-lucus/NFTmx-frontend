@@ -607,7 +607,7 @@ const onDrop = (evt, list) => {
               :key="index"
               class="flex text-white font-ibm-bold items-center gap-3.5"
             >
-              <img src="/images/nfts/img1.png" class="w-8.75 h-8.75" />
+              <img v-lazy="'/images/nfts/img1.png'" class="w-8.75 h-8.75" />
               <nftmx-trim-string class="flex-grow text-sm" :line="1">{{
                 item.nft.name
               }}</nftmx-trim-string>

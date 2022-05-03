@@ -13,7 +13,7 @@ import LandingSection from './containers/LandingSection.vue';
                 
             </div>
             <div class="flex justify-end">
-                <img src="/images/landing/multilevel-royalty.png" />
+                <img v-lazy="'/images/landing/multilevel-royalty.png'" />
             </div>
         </div>
     </landing-section>

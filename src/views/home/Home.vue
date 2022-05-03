@@ -161,7 +161,7 @@ const setCollections = (value) => {
   }
 }
 .anim3 {
-  transform: perspective(19px) rotateY(-3deg) translate3d(0px, -80px, -3px);
+  transform: perspective(19px) rotateY(-3deg) translate3d(0px, -70px, -3px);
   animation: animatedBackground3 300s linear infinite;
 }
 @keyframes animatedBackground3 {

@@ -15,6 +15,7 @@ import VueClipboard from "vue3-clipboard";
 import Toast from "vue-toastification";
 // Import the CSS or use your own!
 import "vue-toastification/dist/index.css";
+import VueLazyLoad from "vue3-lazyload";
 
 import {
   faFilter,
@@ -125,6 +126,7 @@ createApp(App)
   })
   .use(vfmPlugin)
   .use(Toast, options)
+  .use(VueLazyLoad)
   .component("font-awesome-icon", FontAwesomeIcon)
   .component("Multiselect", Multiselect)
   .mount("#app");

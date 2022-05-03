@@ -9,7 +9,7 @@ import LandingSection from "./containers/LandingSection.vue";
     >
       <div class="md:pr-20 2xl:pr-40 pb-10 md:pb-0">
         <div class="flex justify-center">
-          <img src="/images/landing/for-buyers.png" />
+          <img v-lazy="'/images/landing/for-buyers.png'" />
         </div>
         <div class="text-xl lg:text-2xl font-ibm-bold mt-6 mb-4.5">
           For Buyer
@@ -28,7 +28,7 @@ import LandingSection from "./containers/LandingSection.vue";
       </div>
       <div class="mt-6 sm:mt-0 md:pl-20 2xl:pl-40 pt-10 md:pt-0">
         <div class="flex justify-center">
-          <img src="/images/landing/for-sellers.png" />
+          <img v-lazy="'/images/landing/for-sellers.png'" />
         </div>
         <div class="text-xl lg:text-2xl font-ibm-bold mt-6 mb-4.5">
           For Seller

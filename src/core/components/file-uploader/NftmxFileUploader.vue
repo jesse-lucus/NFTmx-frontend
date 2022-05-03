@@ -6,7 +6,7 @@
         <slot>
           <div class="font-ibm-bold text-2xl">
             <div>
-              <img src="/images/components/drag-drop-logo.png" />
+              <img v-lazy="'/images/components/drag-drop-logo.png'" />
             </div>
             <div class="mt-5.5 leading-9">Drag & drop file</div>
             <div class="font-ibm-medium text-sm">or browse media on your device</div>

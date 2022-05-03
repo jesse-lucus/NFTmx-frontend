@@ -37,7 +37,7 @@ import SectionButton from "./components/SectionButton.vue";
         </div>
       </div>
       <div class="flex justify-end mt-6 md:mt-0">
-        <img src="/images/landing/decentralized-vcs.png" />
+        <img v-lazy="'/images/landing/decentralized-vcs.png'" />
       </div>
     </div>
   </landing-section>

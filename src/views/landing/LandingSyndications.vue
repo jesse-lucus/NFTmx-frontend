@@ -6,7 +6,7 @@ import LandingSection from './containers/LandingSection.vue';
     <landing-section black>
         <div class="grid md:grid-cols-2 items-center">
             <div>
-                <img src="/images/landing/decentralized-syndications.png" />
+                <img v-lazy="'/images/landing/decentralized-syndications.png'" />
             </div>
             <div class="sm:px-8">
                 <div class="font-press text-white text-xl lg:text-2xl 2xl:text-3xl">Decentralized Syndication</div>

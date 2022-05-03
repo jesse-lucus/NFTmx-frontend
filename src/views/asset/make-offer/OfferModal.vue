@@ -101,7 +101,7 @@ const cancel = () => {
                             <div
                                 class="bg-black flex items-center font-ibm-medium px-3.25 gap-4 w-full sm:w-32.5 h-13.5"
                             >
-                                <img src="/images/currencies/i-eth.png" />WETH
+                                <img v-lazy="'/images/currencies/i-eth.png'" />WETH
                             </div>
                             <input
                                 v-model="nftPrice"

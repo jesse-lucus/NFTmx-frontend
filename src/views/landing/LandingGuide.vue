@@ -6,7 +6,7 @@ import LandingSection from "./containers/LandingSection.vue";
   <landing-section>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 text-center py-7">
       <div class="items-center px-1">
-        <img src="/images/landing/create-collections.png" class="h-26" />
+        <img v-lazy="'/images/landing/create-collections.png'" class="h-26" />
         <div class="text-white font-ibm-bold text-2xl mt-7">
           Decentralized collection
         </div>
@@ -18,7 +18,7 @@ import LandingSection from "./containers/LandingSection.vue";
       </div>
       <div class="items-center px-1">
         <img
-          src="/images/landing/decentralized-authentications.png"
+          v-lazy="'/images/landing/decentralized-authentications.png'"
           class="h-26"
         />
         <div class="text-white font-ibm-bold text-2xl mt-7">
