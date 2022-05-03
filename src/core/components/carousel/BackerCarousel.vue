@@ -29,7 +29,7 @@ watchEffect(() => {
       if (left.value > 0) {
         left.value = -inner.value.scrollWidth / 2;
       }
-    }, 10);
+    }, 50);
   } else if (anim.value && !props.carouselPlay) {
     clearInterval(anim.value);
     anim.value = null;

@@ -48,7 +48,9 @@ const setCollections = (value) => {
     >
       <div class="h-1/2 w-full animation absolute"></div>
       <div class="h-1/2 w-full animation1 absolute"></div>
-      <div class="h-1/2 w-full panel absolute"></div>
+      <div class="h-1/2 w-full animation2 absolute"></div>
+      <div class="h-1/2 w-full panel absolute">
+      </div>
     </div>
     <div class="max-w-screen-3xl mx-auto">
       <div
@@ -119,18 +121,19 @@ const setCollections = (value) => {
   perspective: 100px;
 }
 .panel {
-  transform: perspective(20px) rotateY(-3deg);
+  transform: perspective(15px) rotateY(-3deg);
   background: linear-gradient(
     to right,
-    rgba(44, 50, 51, 0.2),
+    rgb(0, 0, 0, 0.8),
+    rgba(36, 36, 36, 0.1) 50%,
     rgba(255, 255, 255, 0)
   );
 }
 .animation {
-  transform: perspective(20px) rotateY(-3deg);
+  transform: perspective(15px) rotateY(-3deg);
   background: url("/images/landing/hero-nfts.png");
   background-repeat: repeat;
-  animation: animatedBackground 500s linear infinite;
+  animation: animatedBackground 300s linear infinite;
   background-size: 100% 100%;
 }
 @keyframes animatedBackground {
@@ -143,19 +146,35 @@ const setCollections = (value) => {
   }
 }
 .animation1 {
-  transform: perspective(20px) rotateY(-3deg);
+  transform: perspective(15px) rotateY(-3deg);
   background: url("/images/landing/hero-nfts.png");
   background-repeat: repeat;
-  animation: animatedBackground1 500s linear infinite;
+  animation: animatedBackground1 300s linear infinite;
   background-size: 100% 100%;
 }
 @keyframes animatedBackground1 {
   from {
-    background-position: -1000px 0;
+    background-position: -300px 0px;
   }
   /*use negative width if you want it to flow right to left else and positive for left to right*/
   to {
-    background-position: -11000px 0;
+    background-position: -10300px 0px;
+  }
+}
+.animation2 {
+  transform: perspective(15px) rotateY(-3deg);
+  background: url("/images/landing/hero-nfts.png");
+  background-repeat: repeat;
+  animation: animatedBackground2 300s linear infinite;
+  background-size: 100% 100%;
+}
+@keyframes animatedBackground2 {
+  from {
+    background-position: -700px 0px;
+  }
+  /*use negative width if you want it to flow right to left else and positive for left to right*/
+  to {
+    background-position: -10600px 0px;
   }
 }
 </style>

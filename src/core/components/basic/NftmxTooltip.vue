@@ -50,8 +50,8 @@ onMounted(() => {
     <div
       ref="tooltipRef"
       :class="[
-        tooltip ? 'opacity-100' : 'opacity-0',
-        'absolute transition bg-black text-white font-ibm-light text-left z-50 text-11 shadow-[0_-2px_15px_-2px_rgb(0_0_0_/_0.1),_0_2px_6px_-4px_rgb(0_0_0_/_0.1);] shadow-primary-900 py-1.75 px-4 w-64 rounded',
+        tooltip ? 'opacity-100 z-50' : 'opacity-0 -z-50',
+        'absolute transition bg-black text-white font-ibm-light text-left text-11 shadow-[0_-2px_15px_-2px_rgb(0_0_0_/_0.1),_0_2px_6px_-4px_rgb(0_0_0_/_0.1);] shadow-primary-900 py-1.75 px-4 w-64 rounded',
       ]"
       :style="tooltipStyle"
     >
