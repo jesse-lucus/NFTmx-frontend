@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, ref, watchEffect } from "vue";
 import { useStore } from "vuex";
 
 defineProps({
@@ -14,15 +14,15 @@ const windowWidth = computed(() => store.state.app.windowWidth);
 const tooltip = ref(false);
 const tooltipBox = ref(null);
 const tooltipRef = ref(null);
-const tooltipStyle = ref({});
+const tooltipStyle = ref({ top: 0, left: 0 });
 
 onMounted(() => {
-  let top = -tooltipBox.value.offsetHeight - tooltipRef.value.offsetHeight;
-  let left = 0;
   let tooltipRefPosition = tooltipRef.value.getBoundingClientRect();
   let tooltipBoxPosition = tooltipBox.value.getBoundingClientRect();
+  let top = -tooltipBoxPosition.height - tooltipRefPosition.height;
+  let left = tooltipBoxPosition.width;
   if (tooltipBoxPosition.top < tooltipRefPosition.height + 100) {
-    top = tooltipBox.value.offsetHeight;
+    top = tooltipBoxPosition.height;
   }
   if (
     tooltipBoxPosition.left + tooltipRefPosition.width + 100 >
@@ -30,11 +30,26 @@ onMounted(() => {
   ) {
     left = -tooltipRefPosition.width;
   }
+  console.log("===sssss====", top, left);
   tooltipStyle.value = {
     top: top + "px",
     left: left + "px",
   };
 });
+watchEffect(() => {
+  if (tooltipRef.value && tooltipBox.value) {
+    let tooltipRefPosition = tooltipRef.value.getBoundingClientRect();
+    let tooltipBoxPosition = tooltipBox.value.getBoundingClientRect();
+    let left = tooltipBoxPosition.width;
+    if (
+      tooltipBoxPosition.left + tooltipRefPosition.width + 100 >
+      windowWidth.value
+    ) {
+      left = -tooltipRefPosition.width;
+    }
+    tooltipStyle.value.left = left + "px";
+  }
+}, windowWidth.value);
 </script>
 
 <template>
