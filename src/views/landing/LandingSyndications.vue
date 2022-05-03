@@ -13,7 +13,7 @@ import LandingSection from "./containers/LandingSection.vue";
           Decentralized Syndication
         </div>
         <div
-          class="font-ibm text-sm lg:text-base 2xl:text-lg text-tertiary-400 mt-8.75 leading-7.5"
+          class="font-ibm text-base 2xl:text-lg text-tertiary-400 mt-8.75 leading-6 lg:leading-7.5"
         >
           DAO syndication is an efficient and scalable Metaverse land solution.
           Unlike tokenization which leads to security issues, can be a time

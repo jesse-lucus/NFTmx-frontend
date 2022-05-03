@@ -168,6 +168,7 @@ module.exports = {
         "65per": "65%",
         "70per": "70%",
         "73per": "73%",
+        "200per": "200%",
         fex: "716px",
         fel: "768px",
         fem: "1200px",

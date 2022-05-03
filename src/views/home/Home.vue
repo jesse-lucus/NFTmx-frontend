@@ -58,7 +58,7 @@ const filterAssets = (value) => {
     class="relative bg-[url('/images/landing/hero-image-bg-1920.png')] bg-no-repeat bg-cover bg-right font-press sm:leading-relaxed xl:leading-relaxed text-white px-5.5 sm:px-10 md:px-16 lg:px-22 h-summary-xs lg:h-96 xl:h-asset-img overflow-hidden"
   >
     <div
-      class="w-full h-full absolute -right-80 overflow-hidden flex items-center"
+      class="w-200per -right-1/3 md:w-full h-full absolute md:-right-80 md:overflow-hidden flex items-center"
     >
       <div class="h-1/2 w-full animation anim1 absolute"></div>
       <div class="h-1/2 w-full animation anim2 absolute"></div>
