@@ -100,6 +100,10 @@ class MatketService {
     return http.get(`eth-nfts?${queryBuilder(data)}`);
   }
 
+  getEthNftsCount() {
+    return http.get(`eth-nfts/count/all`);
+  }
+
   getEthContracts() {
     return http.get(`eth-contract`);
   }

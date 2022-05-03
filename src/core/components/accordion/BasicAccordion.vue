@@ -64,6 +64,7 @@ onUpdated(() => {
   if (anim.value) {
     if (props.updatePeried) {
       setTimeout(() => {
+        if (!anim.value) return;
         aHeight.value = anim.value.scrollHeight + "px";
       }, props.updatePeried);
     } else {

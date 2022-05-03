@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watchEffect } from "vue";
+import { onMounted, ref, watchEffect } from "vue";
 import NftmxButton from "@/core/components/basic/NftmxButton.vue";
 import Accordion from "@/core/components/accordion/BasicAccordion.vue";
 import NftmxDivider from "@/core/components/basic/NftmxDivider.vue";
@@ -25,7 +25,7 @@ const emit = defineEmits([
 ]);
 
 const searchText = ref("");
-const lands = ref(4869987);
+const lands = ref(0);
 const collectionName = useDebouncedRef("", 1000);
 const filteredCollections = ref([]);
 
@@ -44,6 +44,11 @@ watchEffect(() => {
     (collection) =>
       collection.name && collection.name.indexOf(collectionName.value) > -1
   );
+});
+onMounted(() => {
+  marketService.getEthNftsCount().then((res) => {
+    lands.value = res.data;
+  });
 });
 </script>
 
