@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref, watchEffect } from "vue";
+import { onMounted, ref, watch, watchEffect } from "vue";
 import NftmxButton from "@/core/components/basic/NftmxButton.vue";
 import Accordion from "@/core/components/accordion/BasicAccordion.vue";
 import NftmxDivider from "@/core/components/basic/NftmxDivider.vue";
@@ -12,7 +12,7 @@ import NftmxInput from "@/core/components/basic/NftmxInput.vue";
 import FilterItem from "./components/FilterItem.vue";
 import useDebouncedRef from "@/core/utils/useDebouncedRef.js";
 import marketService from "@/core/services/market.service";
-import { filterStatus } from "@/core/config";
+import { filterStatus, categories, chains, sortBy } from "@/core/config";
 import { findAndRemove } from "@/core/utils";
 
 const props = defineProps({
@@ -21,26 +21,20 @@ const props = defineProps({
   collections: Array,
   filterOption: Object,
 });
-const emit = defineEmits([
-  "click-filter",
-  "click-filter-by",
-  "filter-contract",
-  "filter-assets",
-]);
+const emit = defineEmits(["click-filter", "click-filter-by", "filter-assets"]);
 
 const searchText = ref("");
 const lands = ref(0);
 const collectionName = useDebouncedRef("", 1000);
 const filteredCollections = ref([]);
+const minPrice = ref();
+const maxPrice = ref();
 
 const clickFilter = () => {
   emit("click-filter");
 };
 const clickFilterBy = (value) => {
   emit("click-filter-by", value);
-};
-const filterCollection = (address) => {
-  emit("filter-contract", address);
 };
 const filterByStatus = (option) => {
   const tempOption = props.filterOption;
@@ -53,7 +47,47 @@ const filterByStatus = (option) => {
   }
   emit("filter-assets", options);
 };
-
+const filterByCategory = (option) => {
+  const tempOption = props.filterOption;
+  let options = JSON.parse(JSON.stringify(tempOption));
+  if (options.category === option) {
+    options.category = "";
+  } else {
+    options.category = option;
+  }
+  emit("filter-assets", options);
+};
+const filterByChain = (option) => {
+  const tempOption = props.filterOption;
+  let options = JSON.parse(JSON.stringify(tempOption));
+  if (options.chain === option) {
+    options.chain = "";
+  } else {
+    options.chain = option;
+  }
+  emit("filter-assets", options);
+};
+const filterBySort = (option) => {
+  const tempOption = props.filterOption;
+  let options = JSON.parse(JSON.stringify(tempOption));
+  if (options.sortBy === option) {
+    options.sortBy = "";
+  } else {
+    options.sortBy = option;
+  }
+  emit("filter-assets", options);
+};
+const filterByCollections = (option) => {
+  const tempOption = props.filterOption;
+  let options = JSON.parse(JSON.stringify(tempOption));
+  const index = options.collections.indexOf(option);
+  if (index > -1) {
+    options.collections.splice(index, 1);
+  } else {
+    options.collections.push(option);
+  }
+  emit("filter-assets", options);
+};
 watchEffect(() => {
   filteredCollections.value = props.collections.filter(
     (collection) =>
@@ -64,6 +98,18 @@ onMounted(() => {
   marketService.getEthNftsCount().then((res) => {
     lands.value = res.data;
   });
+});
+watch(minPrice, (value) => {
+  const tempOption = props.filterOption;
+  let options = JSON.parse(JSON.stringify(tempOption));
+  options.price.min = value;
+  emit("filter-assets", options);
+});
+watch(maxPrice, (value) => {
+  const tempOption = props.filterOption;
+  let options = JSON.parse(JSON.stringify(tempOption));
+  options.price.max = value;
+  emit("filter-assets", options);
 });
 </script>
 
@@ -120,7 +166,7 @@ onMounted(() => {
               <search-accordion title="Status">
                 <template v-slot:content>
                   <div
-                    class="grid grid-cols-2 pt-2 gap-2.5 justify-between text-xs pb-6 h-64"
+                    class="grid grid-cols-2 pt-2 gap-2.5 justify-between text-11 leading-4 pb-6 h-64"
                   >
                     <status-button
                       v-for="(value, key) in filterStatus"
@@ -145,9 +191,19 @@ onMounted(() => {
                       <template v-slot:content></template>
                     </drop-down>
                     <div class="flex mt-11.25 items-center">
-                      <nftmx-input number class="h-8.75" placeholder="Min" />
+                      <nftmx-input
+                        v-model="minPrice"
+                        number
+                        class="h-8.75"
+                        placeholder="Min"
+                      />
                       <span class="font-ibm-medium text-white mx-1">To</span>
-                      <nftmx-input number class="h-8.75" placeholder="Max" />
+                      <nftmx-input
+                        v-model="maxPrice"
+                        number
+                        class="h-8.75"
+                        placeholder="Max"
+                      />
                     </div>
                   </div>
                 </template>
@@ -160,13 +216,13 @@ onMounted(() => {
                 <template v-slot:content>
                   <div class="h-64 py-4">
                     <div class="flex flex-col h-full gap-3.5 overflow-auto">
-                      <filter-item title="Trending" />
-                      <filter-item title="Top" />
-                      <filter-item title="Art" />
-                      <filter-item title="Collectibles" />
-                      <filter-item title="Domain names" />
-                      <filter-item title="Photography" />
-                      <filter-item title="Sports" />
+                      <filter-item
+                        v-for="(value, key) in categories"
+                        :key="key"
+                        :active="filterOption.category === key"
+                        :title="value"
+                        @click="filterByCategory(key)"
+                      />
                     </div>
                   </div>
                 </template>
@@ -195,8 +251,13 @@ onMounted(() => {
                       <div
                         v-for="(collection, index) in filteredCollections"
                         :key="index"
-                        class="flex items-center gap-3.5 font-ibm text-white text-11 py-1.75 cursor-pointer transition hover:text-primary-900"
-                        @click="filterCollection(collection.address)"
+                        :class="[
+                          filterOption.collections.includes(collection.address)
+                            ? 'text-primary-900'
+                            : 'text-white',
+                          'flex items-center gap-3.5 font-ibm text-11 py-1.75 cursor-pointer transition hover:text-primary-900',
+                        ]"
+                        @click="filterByCollections(collection.address)"
                       >
                         <div
                           class="w-6 h-6"
@@ -222,10 +283,13 @@ onMounted(() => {
                 <template v-slot:content>
                   <div class="h-64 py-4">
                     <div class="flex flex-col h-full gap-3.5 overflow-auto">
-                      <filter-item active title="Ethereum" />
-                      <filter-item title="Polygon" />
-                      <filter-item title="BSC" />
-                      <filter-item title="Terra" />
+                      <filter-item
+                        v-for="(value, key) in chains"
+                        :key="key"
+                        :active="filterOption.chain === key"
+                        :title="value"
+                        @click="filterByChain(key)"
+                      />
                     </div>
                   </div>
                 </template>
@@ -238,11 +302,13 @@ onMounted(() => {
                 <template v-slot:content>
                   <div class="h-64 py-4">
                     <div class="flex flex-col h-full gap-3.5 overflow-auto">
-                      <filter-item title="Most activity" />
-                      <filter-item title="Most view" />
-                      <filter-item title="Most liked" />
-                      <filter-item title="Most new" />
-                      <filter-item title="Biggest sales" />
+                      <filter-item
+                        v-for="(value, key) in sortBy"
+                        :key="key"
+                        :active="filterOption.sortBy === key"
+                        :title="value"
+                        @click="filterBySort(key)"
+                      />
                     </div>
                   </div>
                 </template>

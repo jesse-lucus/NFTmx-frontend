@@ -17,7 +17,6 @@ import BasicCarousel from "@/core/components/carousel/BasicCarousel.vue";
 const store = useStore();
 const filterBy = ref("collection");
 const filterActive = ref(false);
-const contract = ref("");
 const ledgerPanelVisible = ref(true);
 const carouselPlay = ref(false);
 const collections = ref([]);
@@ -29,7 +28,7 @@ const filterOption = ref({
   },
   category: "",
   collections: [],
-  chain: "ETH",
+  chain: "",
   sortBy: "",
 });
 
@@ -38,9 +37,6 @@ const clickFilter = () => {
 };
 const clickFilterBy = (value) => {
   filterBy.value = value;
-};
-const filterContract = (address) => {
-  contract.value = address;
 };
 const toggleLedgerPanel = () => {
   ledgerPanelVisible.value = !ledgerPanelVisible.value;
@@ -106,7 +102,6 @@ const filterAssets = (value) => {
       :filterActive="filterActive"
       @click-filter="clickFilter"
       @click-filter-by="clickFilterBy"
-      @filter-contract="filterContract"
       :collections="collections"
       :filterOption="filterOption"
       @filter-assets="filterAssets"
@@ -127,7 +122,6 @@ const filterAssets = (value) => {
       <trending-assets
         :ledgerPanelVisible="ledgerPanelVisible"
         v-if="filterBy === 'lands'"
-        :contract="contract"
         :filterOption="filterOption"
       />
     </div>

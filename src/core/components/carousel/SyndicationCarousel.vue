@@ -93,7 +93,7 @@ watchEffect(() => {
 <template>
   <div class="w-full overflow-hidden">
     <div
-      :class="['relative w-full flex inner']"
+      :class="['relative w-full flex inner z-10']"
       :style="{ left: left + 'px' }"
       ref="inner"
     >
@@ -126,7 +126,9 @@ watchEffect(() => {
                   Syndication type
                   <nftmx-help class="text-8"></nftmx-help>
                 </div>
-                <div class="text-primary-900 font-ibm-medium leading-3 2xl:leading-5 flex">
+                <div
+                  class="text-primary-900 font-ibm-medium leading-3 2xl:leading-5 flex"
+                >
                   {{ item.type === "AUCTION" ? "Auction" : "Fix Sale&nbsp;" }}
                   <nftmx-price-common
                     v-if="item.type === 'FIX_SALE'"
@@ -145,7 +147,9 @@ watchEffect(() => {
                   Total locked value
                   <nftmx-help class="text-8"></nftmx-help>
                 </div>
-                <div class="text-primary-900 font-ibm-medium leading-3 2xl:leading-5 flex">
+                <div
+                  class="text-primary-900 font-ibm-medium leading-3 2xl:leading-5 flex"
+                >
                   <nftmx-price-common :price="item.lockedValue" />
                   <span class="font-ibm text-tertiary-400 flex">
                     &nbsp;(

@@ -2,7 +2,7 @@
 import Accordion from "@/core/components/accordion/BasicAccordion.vue";
 import NftmxSaleCard from "@/core/components/cards/NftmxSaleCard.vue";
 import { useStore } from "vuex";
-import { computed, onMounted, ref, watchEffect } from "vue";
+import { computed, onMounted, ref, watch, watchEffect } from "vue";
 import marketService from "@/core/services/market.service";
 import OpenseaAssetCard from "@/core/components/cards/OpenseaAssetCard.vue";
 import { themeConfig } from "@/core/config";
@@ -11,7 +11,6 @@ import { defaultPagination } from "@/core/config";
 
 const props = defineProps({
   title: String,
-  contract: { type: String, default: "" },
   ledgerPanelVisible: Boolean,
   last: Boolean,
   filterOption: Object,
@@ -21,11 +20,13 @@ const store = useStore();
 const windowWidth = computed(() => store.state.app.windowWidth);
 const open = ref(true);
 const orders = ref([]);
-const filterContract = ref("");
 const loading = ref(true);
 const allAssets = ref({ assets: [], next: "", prev: "" });
 const assets = ref([]);
 const limit = ref(2);
+const assetFilterOption = computed(() => props.filterOption);
+const filterData = ref({});
+
 const more = computed(
   () =>
     allAssets.value.assets.length > 0 &&
@@ -33,9 +34,10 @@ const more = computed(
 );
 
 const retrieveAssets = (init) => {
+  loading.value = true;
   marketService
     .getEthNfts({
-      contract: filterContract.value,
+      ...filterData.value,
       cursor: allAssets.value.next,
       limit: defaultPagination.limit,
     })
@@ -49,13 +51,12 @@ const retrieveAssets = (init) => {
       if (init) {
         loadMoreAssets(init);
       }
+    })
+    .catch((err) => {
+      loading.value = false;
+      console.log(err);
     });
 };
-
-onMounted(() => {
-  retrieveAssets(true);
-});
-
 const loadMoreAssets = (init) => {
   const missed = limit.value - (assets.value.length % limit.value);
   const sliceLimit = init ? limit.value : limit.value * 3 + missed;
@@ -72,40 +73,64 @@ const setLimitValue = (value) => {
 };
 watchEffect(() => {
   if (windowWidth.value >= themeConfig.xl3) {
-    if (limit.value !== 5) {
+    if (limit.value !== 5 && props.ledgerPanelVisible) {
       setLimitValue(5);
+    } else if (limit.value !== 6 && !props.ledgerPanelVisible) {
+      setLimitValue(6);
     }
   } else if (windowWidth.value >= themeConfig.xl2) {
-    if (limit.value !== 4) {
+    if (limit.value !== 4 && props.ledgerPanelVisible) {
       setLimitValue(4);
+    } else if (limit.value !== 5 && !props.ledgerPanelVisible) {
+      setLimitValue(5);
     }
   } else if (windowWidth.value >= themeConfig.xl) {
-    if (limit.value !== 3) {
+    if (limit.value !== 3 && props.ledgerPanelVisible) {
       setLimitValue(3);
+    } else if (limit.value !== 4 && !props.ledgerPanelVisible) {
+      setLimitValue(4);
     }
   } else if (windowWidth.value >= themeConfig.lg) {
-    if (limit.value !== 2) {
+    if (limit.value !== 2 && props.ledgerPanelVisible) {
       setLimitValue(2);
+    } else if (limit.value !== 3 && !props.ledgerPanelVisible) {
+      setLimitValue(3);
     }
+  } else if (
+    windowWidth.value >= themeConfig.sm &&
+    limit.value !== 2 &&
+    !props.ledgerPanelVisible
+  ) {
+    setLimitValue(2);
   } else {
     if (limit.value !== 1) {
       setLimitValue(1);
     }
   }
 });
-watchEffect(() => {
-  if (props.contract !== filterContract.value) {
-    console.log(props.contract);
-    filterContract.value = props.contract;
+const filterAssets = () => {
+  console.log("============value=========", props.filterOption);
+  if (props.filterOption) {
+    let data = {};
+    data["status"] = props.filterOption.status;
+    data["collection"] = props.filterOption.collections;
+    data["min"] = props.filterOption.price.min;
+    data["max"] = props.filterOption.price.max;
+    data["category"] = props.filterOption.category;
+    data["chain"] = props.filterOption.chain;
+    data["sortby"] = props.filterOption.sortBy;
+    console.log("data", data);
     allAssets.value = { assets: [], next: "", prev: "" };
     assets.value = [];
-    retrieveAssets(true);
+    filterData.value = data;
   }
+  retrieveAssets(true);
+};
+onMounted(() => {
+  filterAssets();
 });
-watchEffect(() => {
-  if (props.filterOption) {
-    console.log("==========", props.filterOption.status);
-  }
+watch(assetFilterOption, (value) => {
+  filterAssets();
 });
 </script>
 

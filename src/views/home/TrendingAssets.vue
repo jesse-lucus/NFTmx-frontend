@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, ref, watchEffect } from "vue";
 import Accordion from "@/core/components/accordion/BasicAccordion.vue";
 import AccordionContainer from "./container/AccordionContainer.vue";
 import openseaService from "@/core/services/opensea.service";
@@ -7,7 +7,6 @@ import SectionButton from "@/core/components/buttons/SectionButton.vue";
 import FilterAssets from "./FilterAssets.vue";
 
 const props = defineProps({
-  contract: String,
   ledgerPanelVisible: Boolean,
   filterOption: Object,
 });
@@ -24,6 +23,7 @@ const retrieveOffset = ref(0);
 const retrieveLimit = ref(100);
 const displayOffset = ref(0);
 const displayLimit = ref(3);
+const isFilter = ref(false);
 const more = computed(
   () => allCollections.value.length > collections.value.length
 );
@@ -44,19 +44,35 @@ const loadMoreCollection = () => {
   );
   displayOffset.value += displayLimit.value;
 };
+watchEffect(() => {
+  if (
+    props.filterOption.status.length === 0 &&
+    !props.filterOption.price.min &&
+    !props.filterOption.price.max &&
+    !props.filterOption.category &&
+    props.filterOption.collections.length === 0 &&
+    !props.filterOption.chain &&
+    !props.filterOption.sortBy
+  ) {
+    isFilter.value = false;
+    console.log("===========================");
+  } else {
+    isFilter.value = true;
+    console.log("===alslasjflidji======");
+  }
+});
 </script>
 
 <template>
-  <div class="flex-1 sm:pl-5 pb-20" v-if="contract">
+  <div class="flex-1 sm:pl-5 pb-20" v-if="isFilter">
     <filter-assets
       :ledgerPanelVisible="ledgerPanelVisible"
       title="Explore"
-      :contract="contract"
       :last="true"
       :filterOption="filterOption"
     />
   </div>
-  <div class="flex-1 sm:pl-5 pb-20" v-if="!contract">
+  <div class="flex-1 sm:pl-5 pb-20" v-if="!isFilter">
     <filter-assets
       v-for="(collection, index) in collections"
       :key="index"

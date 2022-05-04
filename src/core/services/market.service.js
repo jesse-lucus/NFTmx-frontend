@@ -97,6 +97,7 @@ class MatketService {
   }
 
   getEthNfts(data) {
+    console.log(queryBuilder(data));
     return http.get(`eth-nfts?${queryBuilder(data)}`);
   }
 

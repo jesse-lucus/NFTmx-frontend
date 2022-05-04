@@ -104,11 +104,37 @@ export const defaultPagination = {
 };
 
 export const filterStatus = {
-  BUY_NOW: 'Buy Now',
-  ON_AUCTION: 'On Auction',
-  HAS_OFFERS: 'Has Offers',
-  HAS_NO_OFFERS: 'Has No Offers',
-  RECENTLY_SOLD: 'Recently Sold',
-  RECENTLY_CANCELED: 'Recently Canceled',
-  ENDING_SOON: 'Ending Soon'
-}
+  BUY_NOW: "Buy Now",
+  ON_AUCTION: "On Auction",
+  HAS_OFFERS: "Has Offers",
+  HAS_NO_OFFERS: "Has No Offers",
+  RECENTLY_SOLD: "Recently Sold",
+  RECENTLY_CANCELED: "Recently Canceled",
+  ENDING_SOON: "Ending Soon",
+};
+
+export const categories = {
+  TRENDING: "Trending",
+  TOP: "Top",
+  ART: "Art",
+  COLLECTIBLES: "Collectibles",
+  DOMAIN_NAMES: "Domain Names",
+  MUSIC: "Music",
+  PHOTOGRAPHY: "Photography",
+  SPORTS: "Sports",
+};
+
+export const chains = {
+  ETHEREUM: "Ethereum",
+  POLYGON: "Polygon",
+  BSC: "BSC",
+  TERRA: "Terra",
+};
+
+export const sortBy = {
+  ACTIVITY: "Most activity",
+  VIEW: "Most view",
+  LIKED: "Most liked",
+  NEW: "Most new",
+  SALES: "Biggest sales",
+};
