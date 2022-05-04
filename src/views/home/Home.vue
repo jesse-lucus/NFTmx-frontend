@@ -28,7 +28,7 @@ const filterOption = ref({
   },
   category: "",
   collections: [],
-  chain: "",
+  chain: "ETHEREUM",
   sortBy: "",
 });
 

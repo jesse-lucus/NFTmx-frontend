@@ -51,7 +51,6 @@ watchEffect(() => {
     !props.filterOption.price.max &&
     !props.filterOption.category &&
     props.filterOption.collections.length === 0 &&
-    !props.filterOption.chain &&
     !props.filterOption.sortBy
   ) {
     isFilter.value = false;

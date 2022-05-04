@@ -60,12 +60,10 @@ const filterByCategory = (option) => {
 const filterByChain = (option) => {
   const tempOption = props.filterOption;
   let options = JSON.parse(JSON.stringify(tempOption));
-  if (options.chain === option) {
-    options.chain = "";
-  } else {
+  if (options.chain !== option) {
     options.chain = option;
+    emit("filter-assets", options);
   }
-  emit("filter-assets", options);
 };
 const filterBySort = (option) => {
   const tempOption = props.filterOption;

@@ -33,7 +33,8 @@ const more = computed(
 const retrieveAssets = (init) => {
   marketService
     .getEthNfts({
-      contract: props.contractAddress,
+      collection: props.contractAddress,
+      chain: "ETHEREUM",
       cursor: allAssets.value.next,
     })
     .then((res) => {

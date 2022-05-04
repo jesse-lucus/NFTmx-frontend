@@ -25,7 +25,9 @@ const allAssets = ref({ assets: [], next: "", prev: "" });
 const assets = ref([]);
 const limit = ref(2);
 const assetFilterOption = computed(() => props.filterOption);
-const filterData = ref({});
+const filterData = ref({
+  chain: "ETHEREUM",
+});
 
 const more = computed(
   () =>
@@ -153,11 +155,10 @@ watch(assetFilterOption, (value) => {
             'grid gap-4.5',
           ]"
         >
-          <opensea-asset-card
-            v-for="(asset, index) in assets"
-            :key="index"
-            :asset="asset"
-          />
+          <div v-for="(asset, index) in assets" :key="index">
+            <nftmx-sale-card v-if="asset.orderId" :order="asset" />
+            <opensea-asset-card v-if="!asset.orderId" :asset="asset" />
+          </div>
         </div>
         <div
           v-if="loading"

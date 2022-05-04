@@ -1,7 +1,7 @@
 <script setup>
 import DetailButton from "@/core/components/basic/DetailTab.vue";
 import Ribbon from "@/core/components/basic/Ribbon.vue";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { useStore } from "vuex";
 import Accordion from "@/core/components/accordion/BasicAccordion.vue";
 import { assetDetailTabs, defaultUser } from "@/core/config";
@@ -19,6 +19,13 @@ const props = defineProps({
 const store = useStore();
 const open = ref(false);
 const tab = ref("Please select");
+const image = computed(() =>
+  props.asset.imageUrl && props.asset.imageUrl.indexOf("ipfs://") === 0
+    ? props.asset.imageUrl.replace("ipfs://", "https://ipfs.io:/ipfs/")
+    : props.asset
+    ? props.asset.imageUrl
+    : ""
+);
 
 const handleClick = () => {
   open.value = !open.value;
@@ -34,11 +41,11 @@ const cancelNFT = () => {};
   <div
     class="relative overflow-hidden w-full h-asset-img-lg border border-black text-13 font-ibm-medium"
     :style="{
-      background: 'url(' + asset.imageUrl + ')',
+      background: 'url(' + image + ')',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
-      backgroundColor: '#222222',
+      backgroundColor: 'black',
     }"
   >
     <inside-modal

@@ -3,6 +3,24 @@ import NftmxHelp from "@/core/components/basic/NftmxHelp.vue";
 import NftmxPrice from "@/core/components/price/NftmxPrice.vue";
 import AnalyzerCardContainer from "./container/AnalyzerCardContainer.vue";
 import NftmxTooltip from "@/core/components/basic/NftmxTooltip.vue";
+import { onMounted, ref } from "vue";
+import marketService from "@/core/services/market.service";
+import { TokenType } from "@/core/config";
+
+const downsideFunds = ref(0);
+const totalSalesFunds = ref(0);
+
+onMounted(() => {
+  marketService.getUSDFromToken(TokenType.ETH).then((eth) => {
+    const ethPrice = eth.data.USD;
+    marketService.getDownsideProtectionFunds().then((res) => {
+      downsideFunds.value = (res.data / Math.pow(10, 18)) * ethPrice;
+    });
+    marketService.getTotalSalesFunds().then((res) => {
+      totalSalesFunds.value = (res.data / Math.pow(10, 18)) * ethPrice;
+    });
+  });
+});
 </script>
 
 <template>
@@ -38,7 +56,7 @@ import NftmxTooltip from "@/core/components/basic/NftmxTooltip.vue";
       <div
         class="font-ibm-semi-bold text-lg sm:text-xl text-center pt-2 flex justify-center"
       >
-        <nftmx-price :price="6452653.3248"></nftmx-price>
+        <nftmx-price :price="downsideFunds"></nftmx-price>
       </div>
     </analyzer-card-container>
     <analyzer-card-container>
@@ -48,7 +66,7 @@ import NftmxTooltip from "@/core/components/basic/NftmxTooltip.vue";
       <div
         class="font-ibm-semi-bold text-lg sm:text-xl text-center pt-2 flex justify-center"
       >
-        <nftmx-price :price="1256859.6559"></nftmx-price>
+        <nftmx-price :price="totalSalesFunds"></nftmx-price>
       </div>
     </analyzer-card-container>
     <analyzer-card-container>
