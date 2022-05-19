@@ -2,7 +2,7 @@
 import { computed } from "vue";
 
 const props = defineProps({
-  modelValue: [String, Number],
+  modelValue: String,
   placeholder: String,
   readonly: Boolean,
   number: Boolean,
@@ -10,15 +10,17 @@ const props = defineProps({
 
 const emit = defineEmits(["update:modelValue"]);
 
-const updateInput = (event) => {
-  emit("update:modelValue", event.target.value);
-};
+const computedValue = computed({
+  get: () => props.modelValue,
+  set: (value) => {
+    emit("update:modelValue", value);
+  },
+});
 </script>
 
 <template>
   <input
-    :value="modelValue"
-    @input="updateInput"
+    v-model="computedValue"
     :class="[
       'focus:outline-none border border-black text-white placeholder-tertiary-500 bg-transparent w-full font-ibm-medium px-4',
     ]"

@@ -11,10 +11,20 @@ export default defineConfig({
       process: "process/browser",
       stream: "stream-browserify",
       zlib: "browserify-zlib",
-      util: 'util'
+      util: 'util',
+      crypto: 'crypto-js',
+      fs: 'fs-js',
     }
   },
   define: {
-    'process.env': {}
-  }
+    'process.env': {},
+    "global": {}
+  },
+  // optimizeDeps: {
+  //   exclude: [
+  //     '@solana/spl-token',
+  //     'bs',
+  //     'borsh'
+  //   ]
+  // }
 })

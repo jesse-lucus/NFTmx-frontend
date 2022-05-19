@@ -49,7 +49,7 @@ const connectWallet = () => {
     <top-bar class="px-2">
       <div class="flex-1 items-stretch flex h-70px font-ibm">
         <nav-bar-item to="/">
-          <img v-lazy="'/images/logo/nftmx-logo.png'" alt="NFT mx" />
+          <img src="/images/logo/nftmx-logo.png" alt="NFT mx" />
         </nav-bar-item>
       </div>
       <div

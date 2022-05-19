@@ -5,8 +5,6 @@ import NftmxSelect from "@/core/components/basic/NftmxSelect.vue";
 import NftmxLineChart from "@/core/components/chart/NftmxLineChart.vue";
 import Accordion from "@/core/components/accordion/BasicAccordion.vue";
 import { ref } from "vue";
-import BasicDropdown from "@/core/components/dropdown/BasicDropdown.vue";
-import BasicDropdownItem from "@/core/components/dropdown/BasicDropdownItem.vue";
 
 const store = useStore();
 const items = [
@@ -19,52 +17,26 @@ const items = [
 <template>
   <accordion>
     <template v-slot:caption>
-      <div class="flex items-center relative">
+      <div class="flex items-center">
         <div class="text-lg font-ibm-bold pt-4 pb-3.5 mr-24">History</div>
-        <div
+        <nftmx-select
+          @click.stop
           v-if="store.state.app.windowWidth >= themeConfig.sm"
-          class="relative h-12 w-full mr-4"
-        >
-          <basic-dropdown
-            @click.stop
-            title="All time"
-            small
-            class="bg-black absolute w-full max-w-lg"
-          >
-            <template v-slot:content>
-              <div
-                class="font-ibm-medium text-white px-3.5 flex flex-col w-full gap-1"
-              >
-                <basic-dropdown-item label="Ethereum" />
-                <basic-dropdown-item label="BSC" />
-                <basic-dropdown-item label="Polygon" />
-              </div>
-            </template>
-          </basic-dropdown>
-        </div>
+          class="font-ibm font-thin w-full max-w-lg mr-16 text-sm"
+          :data="items"
+          small
+        ></nftmx-select>
       </div>
     </template>
     <div class="p-4 lg:p-6">
-      <div
-        @click.stop
-        v-if="store.state.app.windowWidth < themeConfig.sm"
-        class="relative h-12 w-full"
-      >
-        <basic-dropdown
-          title="All time"
+      <div>
+        <nftmx-select
+          @click.stop
+          v-if="store.state.app.windowWidth < themeConfig.sm"
+          class="font-ibm font-thin w-full text-sm text-white"
+          :data="items"
           small
-          class="bg-black absolute w-full max-w-lg"
-        >
-          <template v-slot:content>
-            <div
-              class="font-ibm-medium text-white px-3.5 flex flex-col w-full gap-1"
-            >
-              <basic-dropdown-item label="Ethereum" />
-              <basic-dropdown-item label="BSC" />
-              <basic-dropdown-item label="Polygon" />
-            </div>
-          </template>
-        </basic-dropdown>
+        ></nftmx-select>
       </div>
       <div
         class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:flex lg:flex-wrap lg:gap-x-20 gap-y-2 mt-6 sm:mt-1"

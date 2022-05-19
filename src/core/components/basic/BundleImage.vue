@@ -7,6 +7,7 @@ const props = defineProps({
     type: String,
     default: "col",
   },
+  test: String,
 });
 </script>
 
@@ -32,7 +33,12 @@ const props = defineProps({
       >
         <bundle-image
           :grid="grid === 'col' ? 'row' : 'col'"
-          :images="images.splice(0, 1)"
+          :images="
+            images.splice(
+              0,
+              Math.round(Math.random() * (props.images.length - 2)) + 1
+            )
+          "
         ></bundle-image>
         <bundle-image
           :grid="grid === 'col' ? 'row' : 'col'"

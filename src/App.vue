@@ -4,12 +4,15 @@ import { watch } from 'vue';
 import { useStore } from 'vuex';
 import { useToast } from 'vue-toastification';
 import { useRouter } from 'vue-router';
+import { useWallet } from 'solana-wallets-vue';
 import NftmxLayout from './layouts/NftmxLayout.vue';
 import { publicPages, mainChain } from '@/core/config'
 
 const store = useStore();
 const toast = useToast();
 const router = useRouter();
+
+const { publicKey } = useWallet();
 
 if (typeof window.ethereum !== 'undefined') {
   ethereum
@@ -98,6 +101,11 @@ if (typeof window.ethereum !== 'undefined') {
         })
     }
   });
+
+  // if(!publicKey.value){
+  //     console.log(publicKey);
+  //     store.dispatch("auth/login", publicKey.value);
+  // }
 }
 
 store.commit('app/UPDATE_WINDOW_WIDTH', window.innerWidth);

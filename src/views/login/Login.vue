@@ -3,10 +3,12 @@ import { computed, ref } from 'vue';
 import BodyContainer from '@/core/container/BodyContainer.vue';
 import NftmxFooter from '@/core/container/NftmxFooter.vue';
 import ConnectWallet from './ConnectWallet.vue';
+import ConnectPhantomWallet from './ConnectPhantomWallet.vue';
 import NftmxWalletCard from '@/core/components/cards/NftmxWalletCard.vue';
 import { walletList } from '@/core/config';
-
+import { phantomWalletList } from "@/core/config";
 const selectedWallet = ref(walletList[0]);
+const selectedPhantomWallet = ref(phantomWalletList[0]);
 
 </script>
 
@@ -23,6 +25,9 @@ const selectedWallet = ref(walletList[0]);
                 @click="selectedWallet = wallet"
                 :active="selectedWallet.id === wallet.id"
             />
+        </div>
+        <div class="sm:mt-8">
+            <connect-phantom-wallet :wallet="selectedPhantomWallet" />
         </div>
     </body-container>
     <nftmx-footer />

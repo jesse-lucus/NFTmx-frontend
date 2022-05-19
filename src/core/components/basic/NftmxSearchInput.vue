@@ -6,20 +6,17 @@ import { computed } from 'vue';
 const props = defineProps({
     navbar: Boolean,
     placeholder: String,
-    filterActive: Boolean,
     modelValue: Boolean
 })
 
-const emit = defineEmits(['update:modelValue', 'handle-filter']);
-
-const store = useStore();
-const searchText = computed({
+const emit = defineEmits(['update:modelValue']);
+const filterActive = computed({
     get: () => props.modelValue,
     set: value => emit('update:modelValue', value)
 })
 
 function clickFilter() {
-    emit('handle-filter')
+    filterActive.value = !filterActive.value;
 }
 
 function onKeyDown(evt) {
@@ -28,6 +25,8 @@ function onKeyDown(evt) {
         return
     }
 }
+const store = useStore();
+
 </script>
 
 <template>

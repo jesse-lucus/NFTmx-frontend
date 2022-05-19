@@ -33,8 +33,7 @@ const more = computed(
 const retrieveAssets = (init) => {
   marketService
     .getEthNfts({
-      collection: props.contractAddress,
-      chain: "ETHEREUM",
+      contract: props.contractAddress,
       cursor: allAssets.value.next,
     })
     .then((res) => {
@@ -110,7 +109,7 @@ watchEffect(() => {
         </div>
       </div>
       <div class="h-12.5 w-68.25 z-10">
-        <basic-dropdown title="Single items" class="bg-tertiary-800">
+        <basic-dropdown title="Single items">
           <template v-slot:content>
             <div
               class="font-ibm-medium text-white px-3.5 flex flex-col gap-1"
@@ -119,7 +118,7 @@ watchEffect(() => {
         </basic-dropdown>
       </div>
       <div class="h-12.5 w-68.25 z-10">
-        <basic-dropdown title="Price: low to high" class="bg-tertiary-800">
+        <basic-dropdown title="Price: low to high">
           <template v-slot:content>
             <div
               class="font-ibm-medium text-white px-3.5 flex flex-col gap-1"

@@ -12,7 +12,7 @@ defineProps({
     <accordion :border="false" :sidebar="true" class="w-full">
         <template v-slot:caption>
             <div class="flex items-center w-full">
-                <div class="flex-1 text-13 font-ibm-medium py-4 mr-4">{{ title }}</div>
+                <div class="flex-1 text-13 font-ibm-medium py-4 mr-24">{{ title }}</div>
             </div>
         </template>
         <slot name="content" />

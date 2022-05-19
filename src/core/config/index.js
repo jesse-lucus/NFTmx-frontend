@@ -45,6 +45,17 @@ export const walletList = [
   },
 ];
 
+export const phantomWalletList = [
+  {
+    id: "phantom",
+    name: "Phantom",
+    imgUrl: "/images/wallet_logo/phantom.png",
+    s_imgUrl: "/images/wallet_logo/small/phantom.png",
+  },
+];
+
+
+
 export const defaultUser = {
   bio: "",
   email: "",
@@ -91,6 +102,62 @@ export const TokenType = {
   SOL: "SOL",
 };
 
+export const syndications = [
+  {
+    img: [
+      "/images/nfts/img1.png",
+      "/images/nfts/img2.png",
+      "/images/nfts/img3.png",
+      "/images/nfts/img4.png",
+      "/images/nfts/img5.png",
+      "/images/nfts/img6.png",
+      "/images/nfts/img7.png",
+      "/images/nfts/img8.png",
+    ],
+    type: "AUCTION",
+    lockedValue: 1548325.56,
+  },
+  {
+    img: "/images/nfts/img2.png",
+    type: "FIX_SALE",
+    fixPrice: 50000,
+    lockedValue: 1548325.56,
+  },
+  {
+    img: "/images/nfts/img3.png",
+    type: "FIX_SALE",
+    fixPrice: 50000,
+    lockedValue: 1548325.56,
+  },
+  {
+    img: "/images/nfts/img4.png",
+    type: "AUCTION",
+    lockedValue: 1548325.56,
+  },
+  {
+    img: "/images/nfts/img5.png",
+    type: "FIX_SALE",
+    fixPrice: 50000,
+    lockedValue: 1548325.56,
+  },
+  {
+    img: "/images/nfts/img6.png",
+    type: "AUCTION",
+    lockedValue: 1548325.56,
+  },
+  {
+    img: "/images/nfts/img7.png",
+    type: "AUCTION",
+    lockedValue: 1548325.56,
+  },
+  {
+    img: "/images/nfts/img8.png",
+    type: "FIX_SALE",
+    fixPrice: 50000,
+    lockedValue: 1548325.56,
+  },
+];
+
 export const assetDetailTabs = [
   "Details",
   "About the creator",
@@ -98,43 +165,50 @@ export const assetDetailTabs = [
   "Downside Protection",
 ];
 
+export const popularSyndications = [
+  {
+    name: "Mutant Ape Yacht Club",
+    rate: 31.28,
+    price: 50000,
+  },
+  {
+    name: "Mutant Ape Yacht Club",
+    rate: -31.28,
+    price: 50000,
+  },
+  {
+    name: "Mutant Ape Yacht Club",
+    rate: 31.28,
+    price: 50000,
+  },
+  {
+    name: "Mutant Ape Yacht Club",
+    rate: 31.28,
+    price: 50000,
+  },
+  {
+    name: "Mutant Ape Yacht Club",
+    rate: -31.28,
+    price: 50000,
+  },
+  {
+    name: "Mutant Ape Yacht Club",
+    rate: -31.28,
+    price: 50000,
+  },
+  {
+    name: "Mutant Ape Yacht Club",
+    rate: 31.28,
+    price: 50000,
+  },
+  {
+    name: "Mutant Ape Yacht Club",
+    rate: 31.28,
+    price: 50000,
+  },
+];
+
 export const defaultPagination = {
   page: 1,
-  limit: 20,
-};
-
-export const filterStatus = {
-  BUY_NOW: "Buy Now",
-  ON_AUCTION: "On Auction",
-  HAS_OFFERS: "Has Offers",
-  HAS_NO_OFFERS: "Has No Offers",
-  RECENTLY_SOLD: "Recently Sold",
-  RECENTLY_CANCELED: "Recently Canceled",
-  ENDING_SOON: "Ending Soon",
-};
-
-export const categories = {
-  TRENDING: "Trending",
-  TOP: "Top",
-  ART: "Art",
-  COLLECTIBLES: "Collectibles",
-  DOMAIN_NAMES: "Domain Names",
-  MUSIC: "Music",
-  PHOTOGRAPHY: "Photography",
-  SPORTS: "Sports",
-};
-
-export const chains = {
-  ETHEREUM: "Ethereum",
-  POLYGON: "Polygon",
-  BSC: "BSC",
-  TERRA: "Terra",
-};
-
-export const sortBy = {
-  ACTIVITY: "Most activity",
-  VIEW: "Most view",
-  LIKED: "Most liked",
-  NEW: "Most new",
-  SALES: "Biggest sales",
+  limit: 10,
 };

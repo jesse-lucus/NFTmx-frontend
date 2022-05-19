@@ -1,6 +1,7 @@
 <script setup>
 import Accordion from '@/core/components/accordion/BasicAccordion.vue';
 import { onMounted, ref, watchEffect } from 'vue';
+import { currencies } from "@/core/config";
 
 const props = defineProps({
     color: {

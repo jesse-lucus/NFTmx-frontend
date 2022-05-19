@@ -3,10 +3,9 @@ export const app = {
     state: {
         windowWidth: 0,
         menuOpened: false,
-        logBarOpened: false
+        logBarOpened: false,
     },
     getters: {
-
     },
     mutations: {
         UPDATE_WINDOW_WIDTH(state, val) {
@@ -17,6 +16,6 @@ export const app = {
         },
         TOGGLE_NOTIFICATION_BAR(state, val) {
             state.logBarOpened = val
-        }
+        },
     }
 }

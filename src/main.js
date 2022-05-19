@@ -1,4 +1,5 @@
 import { createApp } from "vue";
+import SolanaWallet from "solana-wallets-vue"
 import App from "./App.vue";
 import "./index.css";
 import "./assets/custom.css";
@@ -15,7 +16,7 @@ import VueClipboard from "vue3-clipboard";
 import Toast from "vue-toastification";
 // Import the CSS or use your own!
 import "vue-toastification/dist/index.css";
-import VueLazyLoad from "vue3-lazyload";
+import 'solana-wallets-vue/styles.css';
 
 import {
   faFilter,
@@ -46,7 +47,6 @@ import {
   faArrowRight,
   faArrowDown,
   faArrowUp,
-  faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faFacebookF,
@@ -59,6 +59,11 @@ import {
 import { faCopyright } from "@fortawesome/free-regular-svg-icons";
 import "v-calendar/dist/style.css";
 import { vfmPlugin } from "vue-final-modal";
+
+import{
+  PhantomWalletAdapter,
+  SlopeWalletAdapter,
+} from "@solana/wallet-adapter-wallets";
 
 library.add(
   faFilter,
@@ -95,8 +100,7 @@ library.add(
   faArrowLeft,
   faArrowRight,
   faArrowDown,
-  faArrowUp,
-  faTrashAlt
+  faArrowUp
 );
 
 const options = {
@@ -114,6 +118,14 @@ const options = {
   rtl: false,
 };
 
+const wallletOptions = {
+  wallets: [
+    new PhantomWalletAdapter(),
+    new SlopeWalletAdapter()
+  ],
+  autoConnect: true,
+}
+
 createApp(App)
   .provide("$moralis", Moralis)
   .use(store)
@@ -124,9 +136,9 @@ createApp(App)
     autoSetContainer: true,
     appendToBody: true,
   })
+  .use(SolanaWallet, wallletOptions)
   .use(vfmPlugin)
   .use(Toast, options)
-  .use(VueLazyLoad)
   .component("font-awesome-icon", FontAwesomeIcon)
   .component("Multiselect", Multiselect)
   .mount("#app");

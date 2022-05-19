@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watchEffect } from "vue";
+import { onMounted, ref } from "vue";
 import BundleImage from "@/core/components/basic/BundleImage.vue";
 import NftmxButton from "@/core/components/basic/NftmxButton.vue";
 import NftmxProgressBar from "@/core/components/basic/NftmxProgressBar.vue";
@@ -72,29 +72,22 @@ const innerStyles = ref({});
 const step = ref("");
 const transitioning = ref(false);
 const inner = ref(null);
-const left = ref(0);
-const anim = ref(null);
-
-watchEffect(() => {
-  if (!anim.value & props.carouselPlay) {
-    anim.value = setInterval(() => {
-      left.value = left.value - 1;
-      if (left.value < -inner.value.scrollWidth / 2) {
-        left.value = 0;
-      }
-    }, 50);
-  } else if (anim.value && !props.carouselPlay) {
-    clearInterval(anim.value);
-    anim.value = null;
-  }
+onMounted(() => {
+  console.log(inner.value.scrollWidth);
 });
 </script>
 
 <template>
   <div class="w-full overflow-hidden">
     <div
-      :class="['relative w-full flex inner z-10']"
-      :style="{ left: left + 'px' }"
+      :class="[
+        carouselPlay
+          ? store.state.app.windowWidth < themeConfig.xl2
+            ? 'piece'
+            : 'piecebig'
+          : '',
+        'relative w-full flex inner',
+      ]"
       ref="inner"
     >
       <div
@@ -113,7 +106,7 @@ watchEffect(() => {
             class="flex flex-col justify-between relative w-70.75 h-70.75 2xl:w-82.5 2xl:h-82.5 bg-black text-white col-span-2 sm:col-span-1"
           >
             <div
-              class="absolute top-0 -right-1 w-fill h-10 2xl:h-11 bg-primary-900 bg-opacity-90 font-ibm-medium text-white text-11 2xl:text-13 flex items-center justify-center"
+              class="absolute top-0 -right-1 w-fill h-11 bg-primary-900 bg-opacity-90 font-ibm-medium text-white text-11 2xl:text-13 flex items-center justify-center"
             >
               <div>10%-100% / 7-365 Downside Protection</div>
               <div
@@ -126,9 +119,7 @@ watchEffect(() => {
                   Syndication type
                   <nftmx-help class="text-8"></nftmx-help>
                 </div>
-                <div
-                  class="text-primary-900 font-ibm-medium leading-3 2xl:leading-5 flex"
-                >
+                <div class="text-primary-900 font-ibm-medium leading-5 flex">
                   {{ item.type === "AUCTION" ? "Auction" : "Fix Sale&nbsp;" }}
                   <nftmx-price-common
                     v-if="item.type === 'FIX_SALE'"
@@ -147,9 +138,7 @@ watchEffect(() => {
                   Total locked value
                   <nftmx-help class="text-8"></nftmx-help>
                 </div>
-                <div
-                  class="text-primary-900 font-ibm-medium leading-3 2xl:leading-5 flex"
-                >
+                <div class="text-primary-900 font-ibm-medium leading-5 flex">
                   <nftmx-price-common :price="item.lockedValue" />
                   <span class="font-ibm text-tertiary-400 flex">
                     &nbsp;(

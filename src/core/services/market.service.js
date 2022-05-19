@@ -54,10 +54,6 @@ class MatketService {
       return axios.get(
         `https://min-api.cryptocompare.com/data/price?fsym=BNB&tsyms=USD&api_key=${cryptocompareApiKey}`
       );
-    } else if (token === TokenType.ETH) {
-      return axios.get(
-        `https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD&api_key=${cryptocompareApiKey}`
-      );
     } else {
       console.log("MarketService getUSDFromToken: Not implemented yet.");
       return amount;
@@ -101,12 +97,7 @@ class MatketService {
   }
 
   getEthNfts(data) {
-    console.log(queryBuilder(data));
     return http.get(`eth-nfts?${queryBuilder(data)}`);
-  }
-
-  getEthNftsCount() {
-    return http.get(`eth-nfts/count/all`);
   }
 
   getEthContracts() {
@@ -119,14 +110,6 @@ class MatketService {
 
   filterEthContractByName(name) {
     return http.get(`eth-contract/filter-by/name?name=${name}`);
-  }
-
-  getDownsideProtectionFunds() {
-    return http.get(`orders/funds/pending`);
-  }
-
-  getTotalSalesFunds() {
-    return http.get(`orders/funds/sales`);
   }
 }
 

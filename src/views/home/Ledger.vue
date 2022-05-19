@@ -160,8 +160,8 @@ watch(windowWidth, (val) => {
           :style="{
             height:
               filterBy === 'collection'
-                ? 'calc(100% - 208px)'
-                : 'calc(100% - 268px)',
+                ? 'calc(100% - 196px)'
+                : 'calc(100% - 258px)',
           }"
         >
           <div class="border-r border-black">

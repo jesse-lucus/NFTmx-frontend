@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref, watchEffect } from "vue";
+import { onMounted, ref } from "vue";
 import BundleImage from "@/core/components/basic/BundleImage.vue";
 import NftmxButton from "@/core/components/basic/NftmxButton.vue";
 import NftmxProgressBar from "@/core/components/basic/NftmxProgressBar.vue";
@@ -8,40 +8,86 @@ import Timer from "@/core/components/timer/Timer.vue";
 import NftmxHelp from "@/core/components/basic/NftmxHelp.vue";
 import { themeConfig } from "@/core/config";
 import { useStore } from "vuex";
+const syndications = [
+  {
+    img: [
+      "/images/nfts/img1.png",
+      "/images/nfts/img2.png",
+      "/images/nfts/img3.png",
+      "/images/nfts/img4.png",
+      "/images/nfts/img5.png",
+      "/images/nfts/img6.png",
+      "/images/nfts/img7.png",
+      "/images/nfts/img8.png",
+    ],
+    type: "AUCTION",
+    lockedValue: 1548325.56,
+  },
+  {
+    img: [
+      "/images/nfts/img1.png",
+      "/images/nfts/img2.png",
+      "/images/nfts/img3.png",
+      "/images/nfts/img4.png",
+      "/images/nfts/img5.png",
+      "/images/nfts/img6.png",
+      "/images/nfts/img7.png",
+      "/images/nfts/img8.png",
+    ],
+    type: "FIX_SALE",
+    fixPrice: 50000,
+    lockedValue: 1548325.56,
+  },
+  {
+    img: "/images/nfts/img3.png",
+    type: "FIX_SALE",
+    fixPrice: 50000,
+    lockedValue: 1548325.56,
+  },
+  {
+    img: "/images/nfts/img4.png",
+    type: "AUCTION",
+    lockedValue: 1548325.56,
+  },
+  {
+    img: "/images/nfts/img5.png",
+    type: "FIX_SALE",
+    fixPrice: 50000,
+    lockedValue: 1548325.56,
+  },
+  {
+    img: "/images/nfts/img6.png",
+    type: "AUCTION",
+    lockedValue: 1548325.56,
+  },
+];
 
 const props = defineProps({
   carouselPlay: Boolean,
 });
 
 const store = useStore();
-const cards = ref([1, 2, 3, 4, 5, 6]);
+const cards = ref(syndications);
 const innerStyles = ref({});
 const step = ref("");
 const transitioning = ref(false);
 const inner = ref(null);
-const left = ref(0);
-const anim = ref(null);
-
-watchEffect(() => {
-  if (!anim.value & props.carouselPlay) {
-    anim.value = setInterval(() => {
-      left.value = left.value + 1;
-      if (left.value > 0) {
-        left.value = -inner.value.scrollWidth / 2;
-      }
-    }, 50);
-  } else if (anim.value && !props.carouselPlay) {
-    clearInterval(anim.value);
-    anim.value = null;
-  }
+onMounted(() => {
+  console.log(inner.value.scrollWidth);
 });
 </script>
 
 <template>
   <div class="w-full overflow-hidden">
     <div
-      :class="['relative w-full flex inner']"
-      :style="{ left: left + 'px' }"
+      :class="[
+        carouselPlay
+          ? store.state.app.windowWidth < themeConfig.xl2
+            ? 'piece'
+            : 'piecebig'
+          : '',
+        'relative w-full flex inner',
+      ]"
       ref="inner"
     >
       <div
@@ -68,8 +114,7 @@ watchEffect(() => {
                 <div
                   class="w-18.5 h-18.5"
                   :style="{
-                    background:
-                      'url(' + '/images/components/drag-drop-logo.png' + ')',
+                    background: 'url(' + '/images/components/drag-drop-logo.png' + ')',
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',

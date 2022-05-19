@@ -29,7 +29,7 @@ const items = [
         <div class="text-lg font-ibm-bold pt-4 pb-3.5">Ledger</div>
         <font-awesome-icon
           :icon="['fas', 'external-link-alt']"
-          class="text-primary-700 hover:text-primary-900 transition text-sm cursor-pointer ml-8 mt-1"
+          class="text-primary-900 text-sm cursor-pointer ml-8 mt-1"
         />
       </div>
     </template>

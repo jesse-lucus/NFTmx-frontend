@@ -25,7 +25,7 @@ import NftmxWalletAddressPop from '@/core/components/blockchain-address/NftmxWal
                 </div>
             </div>
             <div class="h-12.5 w-68.25 z-10">
-                <basic-dropdown title="Event Type" class="bg-tertiary-800">
+                <basic-dropdown title="Event Type">
                     <template v-slot:content>
                         <div class="font-ibm-medium text-white px-3.5 flex flex-col gap-1">
                             <basic-dropdown-item label="All" />
@@ -38,7 +38,7 @@ import NftmxWalletAddressPop from '@/core/components/blockchain-address/NftmxWal
                 </basic-dropdown>
             </div>
             <div class="h-12.5 w-68.25 z-10">
-                <basic-dropdown title="Chain" class="bg-tertiary-800">
+                <basic-dropdown title="Chain">
                     <template v-slot:content>
                         <div class="font-ibm-medium text-white px-3.5 flex flex-col w-full gap-1">
                             <basic-dropdown-item label="Ethereum" />

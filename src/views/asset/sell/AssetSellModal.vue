@@ -147,7 +147,7 @@ const cancel = () => {
                         <div class="py-0.5">
                             <div>Price</div>
                             <div class="text-sm font-ibm-light flex items-center mt-3">
-                                <img v-lazy="'/images/currencies/curr-1.png'" class="w-4 h-4 mr-2.5" />
+                                <img src="/images/currencies/curr-1.png" class="w-4 h-4 mr-2.5" />
                                 0
                             </div>
                         </div>

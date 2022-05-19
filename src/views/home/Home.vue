@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted, ref, watchEffect } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useStore } from "vuex";
 import BodyContainer from "@/core/container/BodyContainer.vue";
 import NftmxDivider from "@/core/components/basic/NftmxDivider.vue";
@@ -17,20 +17,10 @@ import BasicCarousel from "@/core/components/carousel/BasicCarousel.vue";
 const store = useStore();
 const filterBy = ref("collection");
 const filterActive = ref(false);
+const contract = ref("");
 const ledgerPanelVisible = ref(true);
 const carouselPlay = ref(false);
 const collections = ref([]);
-const filterOption = ref({
-  status: [],
-  price: {
-    min: "",
-    max: "",
-  },
-  category: "",
-  collections: [],
-  chain: "ETHEREUM",
-  sortBy: "",
-});
 
 const clickFilter = () => {
   filterActive.value = !filterActive.value;
@@ -38,31 +28,21 @@ const clickFilter = () => {
 const clickFilterBy = (value) => {
   filterBy.value = value;
 };
+const filterContract = (address) => {
+  contract.value = address;
+};
 const toggleLedgerPanel = () => {
   ledgerPanelVisible.value = !ledgerPanelVisible.value;
 };
 const setCollections = (value) => {
   collections.value = value;
 };
-const filterAssets = (value) => {
-  filterOption.value = value;
-};
 </script>
 
 <template>
   <div
-    class="relative bg-[url('/images/landing/hero-image-bg-1920.png')] bg-no-repeat bg-cover bg-right font-press sm:leading-relaxed xl:leading-relaxed text-white px-5.5 sm:px-10 md:px-16 lg:px-22 h-summary-xs lg:h-96 xl:h-asset-img overflow-hidden"
+    class="bg-[url('/images/landing/hero-image-1920.png')] bg-no-repeat bg-cover bg-right font-press sm:leading-relaxed xl:leading-relaxed text-white px-5.5 sm:px-10 md:px-16 lg:px-22 h-summary-xs lg:h-96 xl:h-asset-img"
   >
-    <div
-      class="w-200per -right-1/3 md:w-full h-full absolute md:-right-80 md:overflow-hidden flex items-center"
-    >
-      <div class="h-1/2 w-full animation anim1 absolute"></div>
-      <div class="h-1/2 w-full animation anim2 absolute"></div>
-      <div class="h-1/2 w-full animation anim3 absolute"></div>
-      <div class="h-1/2 w-full animation anim4 absolute"></div>
-      <div class="h-1/2 w-full animation anim5 absolute"></div>
-      <div class="h-1/2 w-full panel absolute"></div>
-    </div>
     <div class="max-w-screen-3xl mx-auto">
       <div
         class="relative top-16.75 lg:top-36 xl:top-45.5 w-home-sm lg:w-home-md xl:w-home-lg"
@@ -102,9 +82,8 @@ const filterAssets = (value) => {
       :filterActive="filterActive"
       @click-filter="clickFilter"
       @click-filter-by="clickFilterBy"
+      @filter-contract="filterContract"
       :collections="collections"
-      :filterOption="filterOption"
-      @filter-assets="filterAssets"
     />
     <div
       class="relative sm:flex justify-center px-4 sm:px-10 pt-6.5 pb-15 lg:px-22"
@@ -122,7 +101,7 @@ const filterAssets = (value) => {
       <trending-assets
         :ledgerPanelVisible="ledgerPanelVisible"
         v-if="filterBy === 'lands'"
-        :filterOption="filterOption"
+        :contract="contract"
       />
     </div>
   </body-container>

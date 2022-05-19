@@ -4,23 +4,21 @@ import LandingSection from "./containers/LandingSection.vue";
 
 <template>
   <landing-section>
-    <div
-      class="grid grid-cols-1 lg:grid-cols-2 gap-20 text-center py-7 2xl:px-20"
-    >
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 text-center py-7">
       <div class="items-center px-1">
-        <img v-lazy="'/images/landing/create-collections.png'" class="h-26" />
+        <img src="/images/landing/create-collections.png" class="h-26" />
         <div class="text-white font-ibm-bold text-2xl mt-7">
           Decentralized collection
         </div>
         <div class="text-tertiary-400 font-ibm text-base mt-3.25">
           All lands automaticity organized as a collection based on the same
-          smart contract factory. Only verified smart contract owner can edit
-          collection information.
+          smart contract factory. <br />
+          Only verified smart contract owner can edit collection information.
         </div>
       </div>
       <div class="items-center px-1">
         <img
-          v-lazy="'/images/landing/decentralized-authentications.png'"
+          src="/images/landing/decentralized-authentications.png"
           class="h-26"
         />
         <div class="text-white font-ibm-bold text-2xl mt-7">

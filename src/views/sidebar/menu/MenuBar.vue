@@ -40,7 +40,8 @@ const openAccountModal = () => {
             </div>
         </div>
         <list-group-item sidebar to="/profile">Profile</list-group-item>
-        <list-group-item sidebar to="/">Create an NFT</list-group-item>
+        <!-- <list-group-item sidebar to="/collection/create">Create Collection</list-group-item> -->
+        <list-group-item sidebar to="/collection/create">Create an NFT</list-group-item>
         <list-group-item sidebar to="/">Launch your DVC</list-group-item>
         <list-group-item sidebar to="/">My collection</list-group-item>
         <list-group-item sidebar to="/">Free license</list-group-item>

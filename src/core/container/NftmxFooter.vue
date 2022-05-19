@@ -47,7 +47,7 @@ watch(windowWidth, (val) => {
         >
           <div class="flex flex-col items-center px-1">
             <img
-              v-lazy="'/images/landing/free-whitelabel.png'"
+              src="/images/landing/free-whitelabel.png"
               class="h-25 mb-5.25"
             />
             <div class="text-white font-ibm-medium text-lg py-3">
@@ -55,31 +55,28 @@ watch(windowWidth, (val) => {
             </div>
             <div class="text-tertiary-400 font-ibm text-xm">
               Build for FREE your own NFT.mx under a new brand and enjoy from
-              sale fees.
+              sale fees
             </div>
           </div>
           <div class="flex flex-col items-center px-1">
-            <img
-              v-lazy="'/images/landing/display-us.png'"
-              class="h-25 mb-5.25"
-            />
+            <img src="/images/landing/display-us.png" class="h-25 mb-5.25" />
             <div class="text-white font-ibm-medium text-lg py-3">
               Display us
             </div>
             <div class="text-tertiary-400 font-ibm text-xm">
-              Use our API to display NFT on you website and enjoy from sale fees.
+              Use our API to display NFT on you website and enjoy from sale fees
             </div>
           </div>
           <div class="flex flex-col items-center px-1">
             <img
-              v-lazy="'/images/landing/become-an-affiliate.png'"
+              src="/images/landing/become-an-affiliate.png"
               class="h-25 mb-5.25"
             />
             <div class="text-white font-ibm-medium text-lg py-3">
               Become an affiliate
             </div>
             <div class="text-tertiary-400 font-ibm text-xm">
-              Drive traffic to NFT.mx and enjoy from sale fees.
+              Drive traffic to NFT.mx and enjoy from sale fees
             </div>
           </div>
         </div>
@@ -95,10 +92,7 @@ watch(windowWidth, (val) => {
               target="_blank"
             >
               <div class>Powered by:</div>
-              <img
-                v-lazy="'/images/logo/atom-logo-footer.png'"
-                class="h-12.5"
-              />
+              <img src="/images/logo/atom-logo-footer.png" class="h-12.5" />
             </a>
           </div>
           <div class="flex justify-center">
@@ -106,21 +100,18 @@ watch(windowWidth, (val) => {
               <div class="flex">
                 <a href="https://solana.com/" target="_blank">
                   <img
-                    v-lazy="'/images/logo/solana-logo-footer.png'"
+                    src="/images/logo/solana-logo-footer.png"
                     class="h-12.5"
                   />
                 </a>
                 <div class="border-r border-tertiary-800 my-2 mx-2"></div>
                 <a href="https://tron.network/" target="_blank">
-                  <img
-                    v-lazy="'/images/logo/tron-logo-footer.png'"
-                    class="h-12.5"
-                  />
+                  <img src="/images/logo/tron-logo-footer.png" class="h-12.5" />
                 </a>
                 <div class="border-r border-tertiary-800 my-2 mx-2"></div>
                 <a href="https://polygon.technology/" target="_blank">
                   <img
-                    v-lazy="'/images/logo/polygon-logo-footer.png'"
+                    src="/images/logo/polygon-logo-footer.png"
                     class="h-12.5"
                   />
                 </a>
@@ -128,22 +119,16 @@ watch(windowWidth, (val) => {
               <div class="border-r border-tertiary-800 my-2 mx-2"></div>
               <div class="flex">
                 <a href="https://ethereum.org/en/" target="_blank">
-                  <img
-                    v-lazy="'/images/logo/eth-logo-footer.png'"
-                    class="h-12.5"
-                  />
+                  <img src="/images/logo/eth-logo-footer.png" class="h-12.5" />
                 </a>
                 <div class="border-r border-tertiary-800 my-2 mx-2"></div>
                 <a href="https://www.binance.com/en" target="_blank">
-                  <img
-                    v-lazy="'/images/logo/bsc-logo-footer.png'"
-                    class="h-12.5"
-                  />
+                  <img src="/images/logo/bsc-logo-footer.png" class="h-12.5" />
                 </a>
                 <div class="border-r border-tertiary-800 my-2 mx-2"></div>
                 <a href="https://www.terra.money/" target="_blank">
                   <img
-                    v-lazy="'/images/logo/terra-logo-footer.png'"
+                    src="/images/logo/terra-logo-footer.png"
                     class="h-12.5"
                   />
                 </a>

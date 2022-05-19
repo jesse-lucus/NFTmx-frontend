@@ -80,13 +80,13 @@ watchEffect(() => {
         class="flex items-center justify-between border border-primary-900 pl-6 pr-2 pb-1.25 pt-0.5 font-ibm-bold text-lg mt-2.5 hover:bg-primary-900 transition cursor-pointer"
       >
         <div>Metamask</div>
-        <img v-lazy="'/images/wallet_logo/metamask.png'" class="w-17" />
+        <img src="/images/wallet_logo/metamask.png" class="w-17" />
       </div>
       <div
         class="flex items-center justify-between border border-black pl-6 pr-2 pb-1.25 pt-0.5 font-ibm-bold text-lg mt-2.25"
       >
         <div>Wallet Connect</div>
-        <img v-lazy="'/images/wallet_logo/connect-wallet.png'" class="w-17" />
+        <img src="/images/wallet_logo/connect-wallet.png" class="w-17" />
       </div>
       <div class="text-center font-ibm-medium text-xs mt-4.25">
         <div>New to Binance Smart Chain?</div>

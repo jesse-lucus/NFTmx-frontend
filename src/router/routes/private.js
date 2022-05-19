@@ -4,11 +4,13 @@ import BuyOrder from "@/views/order/buy/BuyOrder.vue";
 import CancelOrder from "@/views/order/cancel/CancelOrder.vue";
 import Create from "@/views/asset/create/Create.vue";
 import Profile from "@/views/profile/Profile.vue";
+import ProfileSolana from "@/views/profile/ProfileSolana.vue";
 import ProfileSetting from "@/views/profile/ProfileSetting.vue";
 import Asset from "@/views/asset/sell/Asset.vue";
 import MakeOffer from "@/views/asset/make-offer/MakeOffer.vue";
 import Collection from "@/views/collection/Collection.vue";
 import CollectionSetting from "@/views/collection/CollectionSetting.vue";
+import CollectionCreate from "@/views/collection/CollectionCreate.vue";
 
 export default [
   {
@@ -57,7 +59,7 @@ export default [
     },
     path: "/create",
     name: "create",
-    component: Create,
+    component: CollectionCreate,
   },
   {
     meta: {
@@ -65,7 +67,16 @@ export default [
     },
     path: "/profile",
     name: "profile",
-    component: Profile,
+    component: ProfileSolana,
+    children: [],
+  },
+  {
+    meta: {
+      title: "ProfileSolana",
+    },
+    path: "/profilesolana",
+    name: "profilesolana",
+    component: ProfileSolana,
     children: [],
   },
   {
@@ -94,10 +105,18 @@ export default [
   },
   {
     meta: {
-      title: "CollectionSetting",
+      title: "My Collection",
     },
-    path: "/collection/:contractAddress/edit",
+    path: "/my-collection",
+    name: "my_collection",
+    component: Collection,
+  },
+  {
+    meta: {
+      title: "CollectionCreate",
+    },
+    path: "/collection/create",
     name: "collection_setting",
-    component: CollectionSetting,
+    component: CollectionCreate,
   },
 ];

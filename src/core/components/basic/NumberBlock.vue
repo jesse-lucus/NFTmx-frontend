@@ -30,8 +30,6 @@ const blockCss = computed(
         ? 'h-5.25 w-4 font-ibm'
         : size === 'small'
         ? 'h-6 sm:h-6 w-5 sm:w-5.5'
-        : size === 'medium'
-        ? 'h-6 sm:h-8.5 w-5 sm:w-6.5'
         : 'h-8.25 w-6.25 2xl:h-10.75 2xl:w-8',
     ]"
     :style="{
